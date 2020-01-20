@@ -1,0 +1,5 @@
+baseURL = "http://example.org/"
+languageCode = "ja"
+title = "下り坂を昇るブログ"
+
+theme = "gohugo-theme-ananke"
