@@ -1,7 +1,8 @@
-baseURL = "http://example.org/"
+baseURL = "https://kudarizakawonobore.github.io/techblog/"
 languageCode = "ja"
 title = "下り坂を昇るブログ"
 
 theme = "gohugo-theme-ananke"
 
 publishDir = "docs"
+canonifyurls = true
