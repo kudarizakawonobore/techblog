@@ -3,3 +3,5 @@ languageCode = "ja"
 title = "下り坂を昇るブログ"
 
 theme = "gohugo-theme-ananke"
+
+publishDir = "docs"
