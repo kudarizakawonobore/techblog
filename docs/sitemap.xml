@@ -3,20 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/post/</loc>
+    <loc>https://kudarizakawonobore.github.io/techblog/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/categories/</loc>
+    <loc>https://kudarizakawonobore.github.io/techblog/post/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/hugo/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/</loc>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/windows/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/post/00-hugo/</loc>
+    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/categories/</loc>
   </url>
   
 </urlset>

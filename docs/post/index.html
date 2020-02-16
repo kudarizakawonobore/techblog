@@ -25,19 +25,18 @@
 
     
     
+      <link href="https://kudarizakawonobore.github.io/techblog/post/index.xml" rel="alternate" type="application/rss+xml" title="下り坂を昇るブログ" />
+      <link href="https://kudarizakawonobore.github.io/techblog/post/index.xml" rel="feed" type="application/rss+xml" title="下り坂を昇るブログ" />
+      
+    
+    
     <meta property="og:title" content="" />
 <meta property="og:description" content="" />
-<meta property="og:type" content="article" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/post/" />
-
+<meta property="og:updated_time" content="2020-01-20T23:30:27+09:00" />
 <meta itemprop="name" content="">
-<meta itemprop="description" content="">
-
-<meta itemprop="wordCount" content="0">
-
-
-
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content=""/>
 
@@ -48,7 +47,7 @@
     
 
   <header>
-    <div class="bg-black">
+    <div class="pb3-m pb6-l bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -76,27 +75,65 @@
   </div>
 </nav>
 
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          下り坂を昇るブログ
+        </h1>
+        
+      </div>
     </div>
   </header>
 
 
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
+
+  <article class="pa3 pa4-ns nested-copy-line-height nested-img">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
+      <h1 id="post">post</h1>
+
+    </section>
+    <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
           
-        </p>
-        <h1 class="f1">
-          
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 20, 2020
       </div>
-    </article>
+    
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/post/00-hugo/" class="link black dim">
+        はてなブログを卒業して GitHubPages × Hugo にしてみた
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
+はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
+Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになるのだが、ページ遷移が何度も発生するため、かなり煩わしい。
+ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
+実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することも できるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので 思い切って移行してみることにした。
+Hugo 静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。
+Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
+インストール方法 前提 下記はインストール済みである前提
+ Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
+https://github.com/gohugoio/hugo/releases
+公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
+各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
+新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
+hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる
+    </div>
   </div>
+
+        </div>
+      
+    </aside>
+    
+
+
+  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
