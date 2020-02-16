@@ -4,17 +4,7 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/post/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/post/00_hugo/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -23,6 +13,10 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/</loc>
   </url>
   
 </urlset>
