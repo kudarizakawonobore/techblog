@@ -1,6 +1,7 @@
 ---
 title: "はてなブログを卒業して GitHubPages × Hugo にしてみた"
 date: 2020-01-20T23:30:27+09:00
+tags: [windows, hugo]
 ---
 
 ## 動機 
