@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>下り坂を昇るブログ  | はてなブログを卒業して GitHubPages × Hugo にしてみた</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.62.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/dist/css/app.3f5912c237ddd38c8e76debe081c7ca7.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="はてなブログを卒業して GitHubPages × Hugo にしてみた" />
+<meta property="og:description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
+はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
+Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしい。
+ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
+実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
+Hugo 静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。
+Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
+インストール方法 前提 下記はインストール済みである前提
+ Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
+https://github.com/gohugoio/hugo/releases
+公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
+各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
+新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
+hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" />
+<meta property="article:published_time" content="2020-01-20T23:30:27+09:00" />
+<meta property="article:modified_time" content="2020-01-20T23:30:27+09:00" />
+<meta itemprop="name" content="はてなブログを卒業して GitHubPages × Hugo にしてみた">
+<meta itemprop="description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
+はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
+Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしい。
+ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
+実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
+Hugo 静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。
+Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
+インストール方法 前提 下記はインストール済みである前提
+ Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
+https://github.com/gohugoio/hugo/releases
+公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
+各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
+新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
+hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる">
+<meta itemprop="datePublished" content="2020-01-20T23:30:27&#43;09:00" />
+<meta itemprop="dateModified" content="2020-01-20T23:30:27&#43;09:00" />
+<meta itemprop="wordCount" content="195">
+
+
+
+<meta itemprop="keywords" content="windows,hugo," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="はてなブログを卒業して GitHubPages × Hugo にしてみた"/>
+<meta name="twitter:description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
+はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
+Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしい。
+ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
+実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
+Hugo 静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。
+Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
+インストール方法 前提 下記はインストール済みである前提
+ Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
+https://github.com/gohugoio/hugo/releases
+公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
+各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
+新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
+hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      下り坂を昇るブログ
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        
+      </p>
+      <h1 class="f1 athelas mb1">はてなブログを卒業して GitHubPages × Hugo にしてみた</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-01-20T23:30:27&#43;09:00">January 20, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">動機</h2>
+<p>いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた</p>
+<h3 id="heading-1">エディタ・コピペ問題</h3>
+<p>普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。</p>
+<p>はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。
+そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、
+そうすると下記のような問題にぶち当たる。</p>
+<h4 id="preview-">Preview 煩わしい問題</h4>
+<p>記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。
+これが、ページ遷移が何度も発生するため、かなり煩わしい。</p>
+<p>ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。</p>
+<p>実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。</p>
+<h2 id="hugo">Hugo</h2>
+<p>静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。</p>
+<p>Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。</p>
+<h2 id="heading-2">インストール方法</h2>
+<h3 id="heading-3">前提</h3>
+<p>下記はインストール済みである前提</p>
+<ul>
+<li>Go</li>
+<li>Git</li>
+</ul>
+<h3 id="heading-4">インストール手順（簡単）</h3>
+<p>下記リンクから、exe をダウンロードして、Pathを通すだけでOK</p>
+<p><a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p>
+<p><a href="https://gohugo.io/getting-started/installing/">公式サイト</a>には、　Chocolatey を使ってインストールする方法が記述されているので、
+お好きな方で。</p>
+<h2 id="-">各種 コマンド</h2>
+<h3 id="heading-5">サイトを作成</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  hugo new site &lt;サイトを管理するディレクトリ名&gt;
+</code></pre></div><p>上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。</p>
+<h3 id="heading-6">新しい記事を作成</h3>
+<p>新しいページを作成するには、下記のコマンドを実行する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   hugo new post/00_hugo.md
+</code></pre></div><h3 id="heading-7">ローカルで確認するには</h3>
+<p>下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   hugo server -D
+</code></pre></div><p>反映がかなり早いので、細かな修正も即座に確認できる。</p>
+<h3 id="hugo-">Hugo のサイト公開方法</h3>
+<p>Hugo 、というより、Hugo を使って GitHubPages を公開する方法を紹介。</p>
+<p>大まかな構造としては、 Hugo のパブリッシュディレクトリ名を <code>docs</code> に設定し、
+docs ディレクトリを GitHub に Push することで、ブログが自動で公開される
+仕組みを設定してしまおう、というもの。</p>
+<h4 id="github-">GitHub 上でやること</h4>
+<h5 id="--githubpages-">リポジトリ に GitHubPages の設定をする</h5>
+<p>リポジトリ を開いて、 Settings → GitHubPages から、Source を <code>master branch /docs folder</code> に設定する</p>
+<p><img src="./images/githubsetting.png" alt="キャプチャ"></p>
+<h4 id="heading-8">ローカルでやること</h4>
+<p>BaserURL の調整と、 PublishDir の調整をしてやる。</p>
+<h5 id="baseurl-">BaseURL を公開するリポジトリに設定する</h5>
+<p><code>config.toml</code> を編集し、BaseURL を実際に公開する GitHubPages のURL に設定する。
+私の場合、 GitHub のID が、 <code>kudarizakawonobore</code> で、 公開するリポジトリ名が <code>techblog</code> なので、 BaseURL は下記のように設定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml:config.toml" data-lang="toml:config.toml">  <span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;https://kudarizakawonobore.github.io/techblog/&#34;</span>
+  <span style="color:#a6e22e">canonifyurls</span> = <span style="color:#66d9ef">true</span>
+</code></pre></div><h5 id="publish--docs-">Publish ディレクトリを docs にする</h5>
+<p>デフォルトでは、Publish ディレクトリは public になるため、これを docs にしてやる。
+GitHubPages に公開されるディレクトリ名を Public にする方法がわからなかったので、ひとまずビルド側を調整。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml:config.toml" data-lang="toml:config.toml">  <span style="color:#a6e22e">publishDir</span> = <span style="color:#e6db74">&#34;docs&#34;</span>
+</code></pre></div><h5 id="-github-">リモートリポジトリを GitHub のリポジトリに設定する</h5>
+<p>下記コマンドで リモートリポジトリを設定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  git init
+  git remote add origin &lt;リポジトリURL&gt;
+</code></pre></div><h5 id="heading-9">ドキュメントをビルドする</h5>
+<p>下記コマンドで docsディレクトリにファイルが展開される</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  hugo
+</code></pre></div><p>この状態で、master ブランチにプッシュしてあげれば、ブログが公開される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  git add docs
+  git commit -m <span style="color:#e6db74">&#39;first commit&#39;</span>
+  git push -u origin master
+</code></pre></div><h2 id="heading-10">感想</h2>
+<p>初期設定は多少面倒だが、最初に設定さえしてしまえば あとは記事の追加のみに集中できるのが良い。</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="https://kudarizakawonobore.github.io/techblog/tags/windows" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">windows</a>
+   </li>
+  
+   <li class="list">
+     <a href="https://kudarizakawonobore.github.io/techblog/tags/hugo" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">hugo</a>
+   </li>
+  
+</ul>
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
+    &copy;  下り坂を昇るブログ 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://kudarizakawonobore.github.io/techblog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

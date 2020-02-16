@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>下り坂を昇るブログ</title>
+    <link>https://kudarizakawonobore.github.io/techblog/blog/</link>
+    <description>Recent content on 下り坂を昇るブログ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    
+	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

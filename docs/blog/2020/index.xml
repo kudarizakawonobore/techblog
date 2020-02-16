@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>下り坂を昇るブログ</title>
-    <link>https://kudarizakawonobore.github.io/techblog/</link>
+    <link>https://kudarizakawonobore.github.io/techblog/blog/2020/</link>
     <description>Recent content on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 20 Jan 2020 23:30:27 +0900</lastBuildDate>
     
-	<atom:link href="https://kudarizakawonobore.github.io/techblog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/2020/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
