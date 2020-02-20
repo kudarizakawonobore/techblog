@@ -26,7 +26,7 @@
     
     
     <meta property="og:title" content="Raspberry Pi で QR コードリーダーからプログラムを動かす" />
-<meta property="og:description" content="概要 市販のQRコードリーダーを使って、
+<meta property="og:description" content="概要 市販のQRコードリーダーを使って、処理を行うデバイスを Raspberrypi で作るときの実装について書く。
 知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
 QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
 単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
@@ -37,13 +37,13 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr &#43;= key." />
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" />
 <meta property="article:published_time" content="2020-02-20T23:09:00+09:00" />
 <meta property="article:modified_time" content="2020-02-20T23:09:00+09:00" />
 <meta itemprop="name" content="Raspberry Pi で QR コードリーダーからプログラムを動かす">
-<meta itemprop="description" content="概要 市販のQRコードリーダーを使って、
+<meta itemprop="description" content="概要 市販のQRコードリーダーを使って、処理を行うデバイスを Raspberrypi で作るときの実装について書く。
 知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
 QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
 単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
@@ -54,16 +54,16 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr &#43;= key.">
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !">
 <meta itemprop="datePublished" content="2020-02-20T23:09:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-20T23:09:00&#43;09:00" />
-<meta itemprop="wordCount" content="91">
+<meta itemprop="wordCount" content="93">
 
 
 
 <meta itemprop="keywords" content="raspberrypi,python,qrcode," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Raspberry Pi で QR コードリーダーからプログラムを動かす"/>
-<meta name="twitter:description" content="概要 市販のQRコードリーダーを使って、
+<meta name="twitter:description" content="概要 市販のQRコードリーダーを使って、処理を行うデバイスを Raspberrypi で作るときの実装について書く。
 知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
 QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
 単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
@@ -74,7 +74,7 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr &#43;= key."/>
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !"/>
 
   </head>
 
@@ -137,7 +137,7 @@ pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_p
     </header>
 
     <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">概要</h2>
-<p>市販のQRコードリーダーを使って、</p>
+<p>市販のQRコードリーダーを使って、処理を行うデバイスを Raspberrypi で作るときの実装について書く。</p>
 <h2 id="heading-1">知っておきたいこと</h2>
 <p>USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。</p>
 <p>QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが
