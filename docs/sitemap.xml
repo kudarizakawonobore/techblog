@@ -4,23 +4,43 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/tags/hugo/</loc>
-    <lastmod>2020-01-20T23:30:27+09:00</lastmod>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/python/</loc>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/qrcode/</loc>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/</loc>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/raspberrypi/</loc>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/hugo/</loc>
     <lastmod>2020-01-20T23:30:27+09:00</lastmod>
   </url>
   

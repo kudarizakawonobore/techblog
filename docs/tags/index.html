@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/tags/" />
-<meta property="og:updated_time" content="2020-01-20T23:30:27+09:00" />
+<meta property="og:updated_time" content="2020-02-20T23:09:00+09:00" />
 <meta itemprop="name" content="Tags">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tags"/>
@@ -126,6 +126,105 @@ https://github.com/gohugoio/hugo/releases
 各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
 新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
 hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/python" class="link blue hover-black">
+            Tag: python
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="link black dim">
+        Raspberry Pi で QR コードリーダーからプログラムを動かす
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 市販のQRコードリーダーを使って、
+知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
+QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
+単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
+環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
+候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
+下記は、キーボードの入力を取得するためのライブラリ。
+pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、バックグラウンドで実行させることができなさそうなので、不採用。
+envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
+keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
+インストール pip で keyboard をインストールする
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr += key.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/qrcode" class="link blue hover-black">
+            Tag: qrcode
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="link black dim">
+        Raspberry Pi で QR コードリーダーからプログラムを動かす
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 市販のQRコードリーダーを使って、
+知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
+QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
+単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
+環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
+候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
+下記は、キーボードの入力を取得するためのライブラリ。
+pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、バックグラウンドで実行させることができなさそうなので、不採用。
+envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
+keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
+インストール pip で keyboard をインストールする
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr += key.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/raspberrypi" class="link blue hover-black">
+            Tag: raspberrypi
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="link black dim">
+        Raspberry Pi で QR コードリーダーからプログラムを動かす
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 市販のQRコードリーダーを使って、
+知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
+QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
+単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
+環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
+候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
+下記は、キーボードの入力を取得するためのライブラリ。
+pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、バックグラウンドで実行させることができなさそうなので、不採用。
+envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
+keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
+インストール pip で keyboard をインストールする
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr += key.
     </div>
   </div>
 </div>

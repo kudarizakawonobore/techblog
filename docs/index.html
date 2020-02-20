@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/" />
-<meta property="og:updated_time" content="2020-01-20T23:30:27+09:00" />
+<meta property="og:updated_time" content="2020-02-20T23:09:00+09:00" />
 <meta itemprop="name" content="">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
@@ -113,6 +113,41 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="color-inherit dim link">
+            Raspberry Pi で QR コードリーダーからプログラムを動かす
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          概要 市販のQRコードリーダーを使って、
+知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
+QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
+単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
+環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
+候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
+下記は、キーボードの入力を取得するためのライブラリ。
+pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、バックグラウンドで実行させることができなさそうなので、不採用。
+envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
+keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
+インストール pip で keyboard をインストールする
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name != &#34;enter&#34;:try:qr += key.
+        </div>
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             

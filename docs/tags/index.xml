@@ -6,10 +6,37 @@
     <description>Recent content in Tags on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 20 Jan 2020 23:30:27 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 23:09:00 +0900</lastBuildDate>
     
 	<atom:link href="https://kudarizakawonobore.github.io/techblog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/python/</link>
+      <pubDate>Thu, 20 Feb 2020 23:09:00 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qrcode</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/qrcode/</link>
+      <pubDate>Thu, 20 Feb 2020 23:09:00 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/qrcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberrypi</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/raspberrypi/</link>
+      <pubDate>Thu, 20 Feb 2020 23:09:00 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hugo</title>
