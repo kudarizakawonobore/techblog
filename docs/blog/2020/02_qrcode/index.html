@@ -37,7 +37,7 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !" />
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name == &#34;enter&#34;:print(qr)elif &#39;shift&#39; in key." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" />
 <meta property="article:published_time" content="2020-02-20T23:09:00+09:00" />
@@ -54,10 +54,10 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !">
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name == &#34;enter&#34;:print(qr)elif &#39;shift&#39; in key.">
 <meta itemprop="datePublished" content="2020-02-20T23:09:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-20T23:09:00&#43;09:00" />
-<meta itemprop="wordCount" content="93">
+<meta itemprop="wordCount" content="111">
 
 
 
@@ -74,7 +74,7 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name !"/>
+pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name == &#34;enter&#34;:print(qr)elif &#39;shift&#39; in key."/>
 
   </head>
 
@@ -170,20 +170,25 @@ qr <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">key_press</span>(key):
     <span style="color:#66d9ef">global</span> qr
-    <span style="color:#66d9ef">if</span> key<span style="color:#f92672">.</span>name <span style="color:#f92672">!=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enter</span><span style="color:#e6db74">&#34;</span>:
+    <span style="color:#66d9ef">if</span> key<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enter</span><span style="color:#e6db74">&#34;</span>:
+        <span style="color:#66d9ef">print</span>(qr)
+    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">shift</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">in</span> key<span style="color:#f92672">.</span>name:
+        qr <span style="color:#f92672">+</span><span style="color:#f92672">=</span> key<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>lstrip(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">shift</span><span style="color:#e6db74">&#39;</span>)
+    <span style="color:#66d9ef">else</span>:
         <span style="color:#66d9ef">try</span>:
           qr <span style="color:#f92672">+</span><span style="color:#f92672">=</span> key<span style="color:#f92672">.</span>name
           <span style="color:#66d9ef">return</span>
         <span style="color:#66d9ef">except</span>:
           <span style="color:#66d9ef">return</span>
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">print</span>(qr)
     qr <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>
 
 keyboard<span style="color:#f92672">.</span>on_press(key_press)
 <span style="color:#66d9ef">while</span> True:
     time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
-</code></pre></div><h2 id="heading-6">参考</h2>
+</code></pre></div><h2 id="20200225">追記(2020/02/25)</h2>
+<p>keybard では、大文字や shift キーを押した際の文字（？など）を <code>shiftX</code> のように認識してしまうことが判明。
+key.name が shift を含んでいたら、shiftをトリミングするように修正して、完了。</p>
+<h2 id="heading-6">参考</h2>
 <p><a href="https://qiita.com/teraken_/items/0e8c5b31567f966773b6">https://qiita.com/teraken_/items/0e8c5b31567f966773b6</a></p>
 <p><a href="https://tutorialmore.com/questions-559657.htm">https://tutorialmore.com/questions-559657.htm</a></p>
 <p><a href="https://qiita.com/teraken_/items/0e8c5b31567f966773b6">https://qiita.com/teraken_/items/0e8c5b31567f966773b6</a></p>

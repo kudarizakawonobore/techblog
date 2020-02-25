@@ -54,20 +54,27 @@ qr = ""
 
 def key_press(key):
     global qr
-    if key.name != "enter":
+    if key.name == "enter":
+        print(qr)
+    elif 'shift' in key.name:
+        qr += key.name.lstrip('shift')
+    else:
         try:
           qr += key.name
           return
         except:
           return
-    else:
-        print(qr)
     qr = ""
 
 keyboard.on_press(key_press)
 while True:
     time.sleep(1)
 ```
+
+## 追記(2020/02/25)
+keybard では、大文字や shift キーを押した際の文字（？など）を `shiftX` のように認識してしまうことが判明。
+key.name が shift を含んでいたら、shiftをトリミングするように修正して、完了。
+
 
 ## 参考
 https://qiita.com/teraken_/items/0e8c5b31567f966773b6

@@ -28,7 +28,7 @@ pynput(不採用) キーボードやマウスの入力を Listen できるライ
 envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
 keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &amp;#34;&amp;#34;def key_press(key):global qrif key.name !</description>
+pip install keybard実装 import keyboardimport timeqr = &amp;#34;&amp;#34;def key_press(key):global qrif key.name == &amp;#34;enter&amp;#34;:print(qr)elif &amp;#39;shift&amp;#39; in key.</description>
     </item>
     
   </channel>
