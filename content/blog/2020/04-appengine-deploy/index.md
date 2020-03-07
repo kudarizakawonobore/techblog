@@ -37,7 +37,7 @@ CloudBuild サービスアカウント ロールを付与してやる必要が�
 `IAM と管理` -> `IAM` から、デプロイに使っているサービスアカウントを選択して、
 下記のように、`Cloud Build サービスアカウント` の役割を追加する。
 
-![IAM](./images/capture2.png)
+![IAM](./images/capture3.png)
 
 最終的に、下記の権限がついていればOK
 
