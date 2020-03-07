@@ -1,7 +1,6 @@
 ---
 title: "iPhone のカメラで撮影した画像を直接PC に取り込む"
 date: 2020-02-16T20:58:40+09:00
-draft: true
 tags: [opencv, vue, javascript, python]
 ---
 

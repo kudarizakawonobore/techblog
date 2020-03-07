@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>下り坂を昇るブログ  | opencv</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.62.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/dist/css/app.3f5912c237ddd38c8e76debe081c7ca7.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/tags/opencv/index.xml" rel="alternate" type="application/rss+xml" title="下り坂を昇るブログ" />
+      <link href="https://kudarizakawonobore.github.io/techblog/tags/opencv/index.xml" rel="feed" type="application/rss+xml" title="下り坂を昇るブログ" />
+      
+    
+    
+    <meta property="og:title" content="opencv" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/tags/opencv/" />
+<meta property="og:updated_time" content="2020-02-16T20:58:40+09:00" />
+<meta itemprop="name" content="opencv">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="opencv"/>
+<meta name="twitter:description" content=""/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      下り坂を昇るブログ
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          opencv
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “opencv”</p>
+    </div>
+  </article>
+  <div class="mw8 center">    
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/" class="link black dim">
+        iPhone のカメラで撮影した画像を直接PC に取り込む
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      動機 Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。
+ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。
+一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。
+せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。
+結論 今回は外部のツールを使うだけなので、いたってシンプル。 iVCam という iPhone のアプリを使うだけ。
+準備 スマホ側と、PC 側にアプリをインストールするだけ。
+スマホ側 iVcam で検索。 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。
+PC 版 こちらのサイトからダウンロードして、インストールする。 https://www.e2esoft.com/ivcam/
+実行するとき PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。
+撮影した画像は、アプリ側で任意のディレクトリに保存できる。 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。
+利点 無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。
+欠点 解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
+    &copy;  下り坂を昇るブログ 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://kudarizakawonobore.github.io/techblog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

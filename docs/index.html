@@ -157,6 +157,41 @@ pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_p
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/" class="color-inherit dim link">
+            iPhone のカメラで撮影した画像を直接PC に取り込む
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          動機 Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。
+ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。
+一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。
+せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。
+結論 今回は外部のツールを使うだけなので、いたってシンプル。 iVCam という iPhone のアプリを使うだけ。
+準備 スマホ側と、PC 側にアプリをインストールするだけ。
+スマホ側 iVcam で検索。 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。
+PC 版 こちらのサイトからダウンロードして、インストールする。 https://www.e2esoft.com/ivcam/
+実行するとき PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。
+撮影した画像は、アプリ側で任意のディレクトリに保存できる。 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。
+利点 無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。
+欠点 解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。
+        </div>
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" class="color-inherit dim link">
             はてなブログを卒業して GitHubPages × Hugo にしてみた
             </a>
