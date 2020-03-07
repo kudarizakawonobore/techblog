@@ -163,18 +163,18 @@ IAM と管理 -&gt; IAM から、デプロイに使っているサービスア�
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          概要 市販のQRコードリーダーを使って、処理を行うデバイスを Raspberrypi で作るときの実装について書く。
-知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱われる。
-QR コードを Read する（＝デコードする）と、市販の QRコードリーダーが テキスト文字列として PC に入力してくれる。
-単に値を解読したいだけなら、テキストエディタを開いて読み込んであげるだけでよい。 自作のアプリを作って、解読した値を渡したいなら、キーボードのイベントをListenするプログラムを書いてあげればよい。
+          概要 市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。
 環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
+知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。
+QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。
+自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。
 候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
-下記は、キーボードの入力を取得するためのライブラリ。
-pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、バックグラウンドで実行させることができなさそうなので、不採用。
-envdev(不採用) pynput と異なり、バックグラウンドで実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
-keybard(採用) バックグラウンドで実行でき、文字列をそのまま入力できるので、採用。
+下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。
+pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。
+envdev(不採用) pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
+keyboard(採用) バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。
 インストール pip で keyboard をインストールする
-pip install keybard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.name == &#34;enter&#34;:print(qr)elif &#39;shift&#39; in key.
+pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.
         </div>
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
