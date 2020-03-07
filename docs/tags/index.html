@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/tags/" />
-<meta property="og:updated_time" content="2020-02-20T23:09:00+09:00" />
+<meta property="og:updated_time" content="2020-03-08T03:56:39+09:00" />
 <meta itemprop="name" content="Tags">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tags"/>
@@ -95,6 +95,108 @@
   </article>
   <div class="mw8 center">
     <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/appengine" class="link blue hover-black">
+            Tag: appengine
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="link black dim">
+        GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 自分の勉強用のメモ書きなど、一般公開はしたくないものの、インターネット上から一部の 人に見せたいようなドキュメントは、普段 AppEngine × IdentityAwareProxy で認証付きサイトとして限定公開している。
+デプロイを手動でやると面倒なので、BitBucket の BuildPipeline から自動でデプロイするように設定しているのだが、2週間ぐらい前に突然失敗するようになっていた。
+対象となる人 gcloud app deploy コマンド実行時、下記のように、Failed to create cloud build: Permission denied. と表示される人。
+結論 題名の通り。デプロイに使っている サービスアカウントから、CloudBuild を実行できるようにしてあげたらデプロイできるようになる。
+以下、手順。
+API の有効化 プロジェクトで普段 CloudBuild を使っていない場合は、API を有効化してやる。 プロジェクトオーナー権限でデプロイしている人は、この手順だけでOKのはず。
+APIとサービス から API の有効化 ボタンを押下して、API を有効化する。
+当該サービスアカウントに CloudBuild の実行権限を付与する サービスアカウントをきっちり管理している人は、最低限の権限しか与えていないはずなので、 CloudBuild サービスアカウント ロールを付与してやる必要がある。
+IAM と管理 -&gt; IAM から、デプロイに使っているサービスアカウントを選択して、 下記のように、Cloud Build サービスアカウント の役割を追加する。
+最終的に、下記の権限がついていればOK
+  AppEngine 管理者
+  Cloud Build サービスアカウント
+  ストレージオブジェクト管理者
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/cloudbuild" class="link blue hover-black">
+            Tag: cloudbuild
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="link black dim">
+        GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 自分の勉強用のメモ書きなど、一般公開はしたくないものの、インターネット上から一部の 人に見せたいようなドキュメントは、普段 AppEngine × IdentityAwareProxy で認証付きサイトとして限定公開している。
+デプロイを手動でやると面倒なので、BitBucket の BuildPipeline から自動でデプロイするように設定しているのだが、2週間ぐらい前に突然失敗するようになっていた。
+対象となる人 gcloud app deploy コマンド実行時、下記のように、Failed to create cloud build: Permission denied. と表示される人。
+結論 題名の通り。デプロイに使っている サービスアカウントから、CloudBuild を実行できるようにしてあげたらデプロイできるようになる。
+以下、手順。
+API の有効化 プロジェクトで普段 CloudBuild を使っていない場合は、API を有効化してやる。 プロジェクトオーナー権限でデプロイしている人は、この手順だけでOKのはず。
+APIとサービス から API の有効化 ボタンを押下して、API を有効化する。
+当該サービスアカウントに CloudBuild の実行権限を付与する サービスアカウントをきっちり管理している人は、最低限の権限しか与えていないはずなので、 CloudBuild サービスアカウント ロールを付与してやる必要がある。
+IAM と管理 -&gt; IAM から、デプロイに使っているサービスアカウントを選択して、 下記のように、Cloud Build サービスアカウント の役割を追加する。
+最終的に、下記の権限がついていればOK
+  AppEngine 管理者
+  Cloud Build サービスアカウント
+  ストレージオブジェクト管理者
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/gcp" class="link blue hover-black">
+            Tag: gcp
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="link black dim">
+        GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      概要 自分の勉強用のメモ書きなど、一般公開はしたくないものの、インターネット上から一部の 人に見せたいようなドキュメントは、普段 AppEngine × IdentityAwareProxy で認証付きサイトとして限定公開している。
+デプロイを手動でやると面倒なので、BitBucket の BuildPipeline から自動でデプロイするように設定しているのだが、2週間ぐらい前に突然失敗するようになっていた。
+対象となる人 gcloud app deploy コマンド実行時、下記のように、Failed to create cloud build: Permission denied. と表示される人。
+結論 題名の通り。デプロイに使っている サービスアカウントから、CloudBuild を実行できるようにしてあげたらデプロイできるようになる。
+以下、手順。
+API の有効化 プロジェクトで普段 CloudBuild を使っていない場合は、API を有効化してやる。 プロジェクトオーナー権限でデプロイしている人は、この手順だけでOKのはず。
+APIとサービス から API の有効化 ボタンを押下して、API を有効化する。
+当該サービスアカウントに CloudBuild の実行権限を付与する サービスアカウントをきっちり管理している人は、最低限の権限しか与えていないはずなので、 CloudBuild サービスアカウント ロールを付与してやる必要がある。
+IAM と管理 -&gt; IAM から、デプロイに使っているサービスアカウントを選択して、 下記のように、Cloud Build サービスアカウント の役割を追加する。
+最終的に、下記の権限がついていればOK
+  AppEngine 管理者
+  Cloud Build サービスアカウント
+  ストレージオブジェクト管理者
+    </div>
+  </div>
+</div>
+
+        
       
         <h2 class="f1">
           <a href="https://kudarizakawonobore.github.io/techblog/tags/hugo" class="link blue hover-black">

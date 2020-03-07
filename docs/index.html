@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/" />
-<meta property="og:updated_time" content="2020-02-20T23:09:00+09:00" />
+<meta property="og:updated_time" content="2020-03-08T03:56:39+09:00" />
 <meta itemprop="name" content="">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
@@ -122,6 +122,42 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="color-inherit dim link">
+            GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          概要 自分の勉強用のメモ書きなど、一般公開はしたくないものの、インターネット上から一部の 人に見せたいようなドキュメントは、普段 AppEngine × IdentityAwareProxy で認証付きサイトとして限定公開している。
+デプロイを手動でやると面倒なので、BitBucket の BuildPipeline から自動でデプロイするように設定しているのだが、2週間ぐらい前に突然失敗するようになっていた。
+対象となる人 gcloud app deploy コマンド実行時、下記のように、Failed to create cloud build: Permission denied. と表示される人。
+結論 題名の通り。デプロイに使っている サービスアカウントから、CloudBuild を実行できるようにしてあげたらデプロイできるようになる。
+以下、手順。
+API の有効化 プロジェクトで普段 CloudBuild を使っていない場合は、API を有効化してやる。 プロジェクトオーナー権限でデプロイしている人は、この手順だけでOKのはず。
+APIとサービス から API の有効化 ボタンを押下して、API を有効化する。
+当該サービスアカウントに CloudBuild の実行権限を付与する サービスアカウントをきっちり管理している人は、最低限の権限しか与えていないはずなので、 CloudBuild サービスアカウント ロールを付与してやる必要がある。
+IAM と管理 -&gt; IAM から、デプロイに使っているサービスアカウントを選択して、 下記のように、Cloud Build サービスアカウント の役割を追加する。
+最終的に、下記の権限がついていればOK
+  AppEngine 管理者
+  Cloud Build サービスアカウント
+  ストレージオブジェクト管理者
+        </div>
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="color-inherit dim link">
             Raspberry Pi で QR コードリーダーからプログラムを動かす
             </a>
@@ -184,46 +220,25 @@ PC 版 こちらのサイトからダウンロードして、インストール�
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" class="color-inherit dim link">
-            はてなブログを卒業して GitHubPages × Hugo にしてみた
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
-エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
-はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
-Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしい。
-ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
-実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
-Hugo 静的サイトジェネレータを複数試してみて、最後、公開方法が簡単な Hexo と迷ったが、LiveReload の速さが決め手で、Hugo を選択することにした。
-Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
-インストール方法 前提 下記はインストール済みである前提
- Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
-https://github.com/gohugoio/hugo/releases
-公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
-各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成されます。
-新しい記事を作成 新しいページを作成するには、下記のコマンドを実行する。
-hugo new post/00_hugo.mdローカルで確認するには 下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる
-        </div>
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" class="link black dim">
+              はてなブログを卒業して GitHubPages × Hugo にしてみた
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All </a>
+        
+        </section>
       
 
       </div>

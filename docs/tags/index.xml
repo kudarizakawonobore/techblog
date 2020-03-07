@@ -6,10 +6,37 @@
     <description>Recent content in Tags on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 20 Feb 2020 23:09:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 08 Mar 2020 03:56:39 +0900</lastBuildDate>
     
 	<atom:link href="https://kudarizakawonobore.github.io/techblog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AppEngine</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/appengine/</link>
+      <pubDate>Sun, 08 Mar 2020 03:56:39 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/appengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CloudBuild</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/cloudbuild/</link>
+      <pubDate>Sun, 08 Mar 2020 03:56:39 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/cloudbuild/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GCP</title>
+      <link>https://kudarizakawonobore.github.io/techblog/tags/gcp/</link>
+      <pubDate>Sun, 08 Mar 2020 03:56:39 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/tags/gcp/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>

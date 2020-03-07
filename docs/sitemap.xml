@@ -4,14 +4,39 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
-    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/appengine/</loc>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/cloudbuild/</loc>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/gcp/</loc>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/</loc>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
   </url>
   
   <url>
@@ -31,11 +56,6 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/tags/raspberrypi/</loc>
-    <lastmod>2020-02-20T23:09:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
     <lastmod>2020-02-20T23:09:00+09:00</lastmod>
   </url>
   
