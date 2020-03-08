@@ -7,8 +7,16 @@ theme = "ananke"
 publishDir = "docs"
 canonifyurls = true
 
+[menu]
+[[menu.main]]
+identifier = "Posts"
+name = "Posts"
+url = "/blog/"
+
+[[menu.main]]
+identifier = "Contact"
+name = "Contact"
+url = "/contact/"
+
 [params]
-time_format_blog = "Monday, January 02, 2020"
-time_format_default = "January 2, 2020"
-# Sections to publish in the main RSS feed.
-rss_sections = ["blog"]
+featured_image = '/images/gohugo-default-sample-hero-image.jpg'
