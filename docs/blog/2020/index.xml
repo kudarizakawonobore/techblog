@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する</title>
+      <title>自作 SPA アプリケーションを Azure AD / Open ID Connect を使って保護する</title>
       <link>https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/</link>
       <pubDate>Thu, 02 Apr 2020 11:36:27 +0900</pubDate>
       
@@ -26,7 +26,7 @@ Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuit
 そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントで 認証を実現する方法を考えてみたい。
 ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
 この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
-もともと閲覧できていたユーザーを即時閲覧不可にするのは、(認可のプロセスを間借りしている関係上)いったん考えないものとする。
+もともと閲覧できていたユーザーを 即時 閲覧不可にするのは、いったん考えないものとする。
 準備 やることは、大きく分けて、下記の2つ
   Azure AD のアプリケーションを作成し、ユーザーを割り当てる
   Client アプリを msal で保護する
