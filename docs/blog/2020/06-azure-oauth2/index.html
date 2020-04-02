@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>下り坂を昇るブログ  | 自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.62.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/dist/css/app.3f5912c237ddd38c8e76debe081c7ca7.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する" />
+<meta property="og:description" content="動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントで 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを即時閲覧不可にするのは、(認可のプロセスを間借りしている関係上)いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/" />
+<meta property="article:published_time" content="2020-04-02T11:36:27+09:00" />
+<meta property="article:modified_time" content="2020-04-02T11:36:27+09:00" />
+<meta itemprop="name" content="自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する">
+<meta itemprop="description" content="動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントで 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを即時閲覧不可にするのは、(認可のプロセスを間借りしている関係上)いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。">
+<meta itemprop="datePublished" content="2020-04-02T11:36:27&#43;09:00" />
+<meta itemprop="dateModified" content="2020-04-02T11:36:27&#43;09:00" />
+<meta itemprop="wordCount" content="248">
+
+
+
+<meta itemprop="keywords" content="azure,activedirectory,vue," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する"/>
+<meta name="twitter:description" content="動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントで 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを即時閲覧不可にするのは、(認可のプロセスを間借りしている関係上)いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      下り坂を昇るブログ
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title=" page">
+              
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        
+      </p>
+      <h1 class="f1 athelas mb1">自作 SPA アプリケーションを Azure AD の OpenIDConnect 認証を使って保護する</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-04-02T11:36:27&#43;09:00">April 2, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">動機</h2>
+<p>クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。</p>
+<p>業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。</p>
+<p>簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。</p>
+<h2 id="gcp-google-">GCP (Google アカウント）でやる場合</h2>
+<p>GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。</p>
+<p>しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)</p>
+<p>Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。</p>
+<p>そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントで 認証を実現する方法を考えてみたい。</p>
+<h2 id="heading-1">ゴール</h2>
+<p>Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。</p>
+<p>この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）</p>
+<p>もともと閲覧できていたユーザーを即時閲覧不可にするのは、(認可のプロセスを間借りしている関係上)いったん考えないものとする。</p>
+<h2 id="heading-2">準備</h2>
+<p>やることは、大きく分けて、下記の2つ</p>
+<ul>
+<li>
+<p>Azure AD のアプリケーションを作成し、ユーザーを割り当てる</p>
+</li>
+<li>
+<p>Client アプリを msal で保護する</p>
+</li>
+</ul>
+<h3 id="azure-ad--">Azure AD の アプリケーションの作成</h3>
+<p>Azure Portal から、 <code>Azure Active Directory</code> -&gt; <code>アプリの登録</code> と進む。</p>
+<p><img src="./images/azuread-app.png" alt="アプリの登録"></p>
+<p><code>新規登録</code> から、アプリを作成します。</p>
+<p><img src="./images/azuread-app2.png" alt="アプリの作成"></p>
+<p>この時、</p>
+<ul>
+<li>
+<p>アプリの名前は任意</p>
+</li>
+<li>
+<p>サポートされているユーザーの種類は、「任意の組織ディレクトリ内アカウント」にする。こうしておくことで、このテナントに所属していないユーザー（ゲストユーザー等）もサインインの対象にできる。</p>
+</li>
+<li>
+<p>リダイレクト URI は、アプリをホストするドメイン（ローカルでホストするときは、 <code>http://localhost:8080</code> , Blob 上にホストするときは、 <code>https://&lt;storage account name&gt;.blob.windows.net/&lt;container name&gt;/index.html#/</code> 等。 リダイレクト URL は後から複数に変更できるので、ひとまず localhost で。</p>
+</li>
+</ul>
+<p><img src="./images/azuread-app3.png" alt="アプリの作成"></p>
+<p>アプリが作成できたら、作成したアプリを選択し、アプリケーション ID とテナントID をメモしておく。後でクライアント側を実装するときに使うことになる。</p>
+<h4 id="-">アプリに ユーザーを割り当てる</h4>
+<p>この状態だと、任意の Azure AD にログインできるユーザーは、誰でもアプリの認証が通る状態になっている。
+着実に進めて行きたい人は、ここで、ものは試しにとログインしてみたくなるが、後で切り分けが難しくなるので、じっとこらえた方がいい。</p>
+<p>アプリを選択した状態の画面で、下図の場所にあるリンクをクリックすると、エンタープライズアプリケーションの設定画面に遷移するので、そこでユーザーの割り当てを行う。</p>
+<p><img src="./images/azuread-app4.png" alt="アプリの作成"></p>
+<p>画面左の「ユーザーとグループ」からユーザー、もしくはグループを割り当てる。</p>
+<p><img src="./images/azuread-app5.png" alt="ユーザーの設定"></p>
+<p>これでクラウド側の準備は完了。</p>
+<h3 id="client-vue-msal-">Client アプリ（Vue）で msal を設定する</h3>
+<p>Node 周りで AD 認証のライブラリを調べていくと、 msal と adal という二種類のライブラリが出てくる。</p>
+<p>で、<a href="https://docs.microsoft.com/ja-jp/azure/active-directory/develop/msal-overview">こちら</a> の記事によると、どうやら msal の方が後継のようなので、特別理由がなければ msal を使った方がよさそうである。</p>
+<p>vue で msal を使うためのライブラリを調べていくと、 <a href="https://github.com/mvertopoulos/vue-msal">vue-msal</a> というライブラリを使えば簡単に認証が実現できるようなので、使ってみる。</p>
+<h4 id="heading-3">インストール</h4>
+<p>npm で簡単にインストール</p>
+<pre><code>  npm install vue-msal
+</code></pre><h4 id="heading-4">設定</h4>
+<p>main.js で、下記の通り設定してやる。
+公式ドキュメントをよく読まないとわかりづらいが、最低限、
+clientId, tenantId, redirectUri の3つは明示的に指定してやる必要がある。
+(clientID, tenantId は、アプリケーションの作成時にメモした値)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript:main.js" data-lang="javascript:main.js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">msal</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue-msal&#39;</span>
+
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">msal</span>, {
+    <span style="color:#a6e22e">auth</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">clientId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;アプリのクライアントID&gt;&#39;</span>,
+        <span style="color:#a6e22e">tenantId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;アプリのテナントID&gt;&#39;</span>,
+        <span style="color:#a6e22e">redirectUri</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VUE_APP_API_URL</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#75715e">// .env.local ファイルで環境変数に設定しておくと、本番用のURL と使い分けやすい
+</span><span style="color:#75715e"></span>    }
+})
+
+</code></pre></div><h4 id="heading-5">実装</h4>
+<p>この方式で、ちゃんとリソースが保護できているかはちゃんと考えないといけないが、
+ひとまず、App.vue にこんな感じに設定しておけば、認証を強制することができる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html:App.vue" data-lang="html:App.vue">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span> <span style="color:#f92672">v-if</span><span style="color:#e6db74">=&#34;$msal.isAuthenticated()&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#960050;background-color:#1e0010">!</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#a6e22e">router</span><span style="color:#f92672">-view</span> <span style="color:#a6e22e">とか</span> <span style="color:#960050;background-color:#1e0010">-</span><span style="color:#960050;background-color:#1e0010">-</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+&lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+        <span style="color:#a6e22e">beforeCreate</span>() {
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$msal</span>.<span style="color:#a6e22e">isAuthenticated</span>()){
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$msal</span>.<span style="color:#a6e22e">signIn</span>();
+            }
+        }
+    }
+&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><h4 id="heading-6">動作確認</h4>
+<p>ひとまず、こんな感じで、 ローカルでアプリを立ち上げて、 localhost:8080 にアクセスしたときに、Azure AD のログイン画面に飛ばされる。</p>
+<p><img src="./images/azuread-client.png" alt="認証画面"></p>
+<p>この時、アプリケーションに割り当てたユーザーアカウントでログインすれば、画面が表示されるはず。</p>
+<h4 id="heading-7">デプロイ</h4>
+<p>Blob でホストするときは、下記のことに気を付けること。</p>
+<ul>
+<li>
+<p><code>vue.config.js</code> で publicPath を、デプロイするコンテナ名と一致させること。</p>
+</li>
+<li>
+<p>router の mode を history ではなく、 hash にすること。</p>
+</li>
+<li>
+<p>上記に伴い、.env.production で、 RedirectUri の変数を、hash mode 用の URL にすること。</p>
+</li>
+</ul>
+<h2 id="heading-8">感想</h2>
+<p>Azure AD のユーザーは、各社使っているところが多いので、他社とコラボレーションするときは非常に便利そう。</p>
+<p>一方で、マネージドサービスのみで完結しない（vue-msal の実装や設定が必要）ので、心理的ハードルは高め。本当にこれで保護しきれているのか、不安がぬぐい切れない。<br>
+特に、vue の実装周りのところは大いに不安が残るので、プロダクションで同様のことをするのはお勧めしない。</p>
+<p>Blob 上の簡易的なホスティング は、SSL が必須な環境がほしいときに割とよく使うので、この辺りを完全マネージドで保護する機構とかあるとうれしいのだが。。。</p>
+<h2 id="2">感想その2</h2>
+<p>上記、調査、環境準備、実験条件の整理等々で、かなりの時間と覚悟を要したが、ブログを書き終わった後になって、Azure Learn なる MS公式のコースでわかりやすく紹介されていることが判明。1時間でできるらしい。</p>
+<p><a href="https://docs.microsoft.com/ja-jp/learn/modules/secure-app-with-oidc-and-azure-ad/">https://docs.microsoft.com/ja-jp/learn/modules/secure-app-with-oidc-and-azure-ad/</a></p>
+<p><del>こんなわかりやすいコースがあるなら、Google検索で引っかかりやすくしておいてほしかった。。。</del></p>
+<p>とはいえ、失敗した部分も含めて勉強になったのでよしとする。</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="https://kudarizakawonobore.github.io/techblog/tags/azure" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">azure</a>
+   </li>
+  
+   <li class="list">
+     <a href="https://kudarizakawonobore.github.io/techblog/tags/activedirectory" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">activedirectory</a>
+   </li>
+  
+   <li class="list">
+     <a href="https://kudarizakawonobore.github.io/techblog/tags/vue" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">vue</a>
+   </li>
+  
+</ul>
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/">iPhone のカメラで撮影した画像を直接PC に取り込む</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
+    &copy;  下り坂を昇るブログ 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://kudarizakawonobore.github.io/techblog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
