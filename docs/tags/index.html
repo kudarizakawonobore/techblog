@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/tags/" />
-<meta property="og:updated_time" content="2020-03-08T03:56:39+09:00" />
+<meta property="og:updated_time" content="2020-04-04T11:36:27+09:00" />
 <meta itemprop="name" content="Tags">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tags"/>
@@ -121,6 +121,41 @@
     <section class="ph4">
       
         <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/activedirectory" class="link blue hover-black">
+            Tag: activedirectory
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/" class="link black dim">
+        自作 SPA アプリケーションを Azure AD / Open ID Connect を使って保護する
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントによる 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを 即時 閲覧不可にするのは、いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
           <a href="https://kudarizakawonobore.github.io/techblog/tags/appengine" class="link blue hover-black">
             Tag: appengine
           </a>
@@ -148,6 +183,41 @@ IAM と管理 -&gt; IAM から、デプロイに使っているサービスア�
   AppEngine 管理者
   Cloud Build サービスアカウント
   ストレージオブジェクト管理者
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="https://kudarizakawonobore.github.io/techblog/tags/azure" class="link blue hover-black">
+            Tag: azure
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/" class="link black dim">
+        自作 SPA アプリケーションを Azure AD / Open ID Connect を使って保護する
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントによる 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを 即時 閲覧不可にするのは、いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。
     </div>
   </div>
 </div>
@@ -454,6 +524,34 @@ pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_
             Tag: vue
           </a>
         </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Blog</span>
+    <h1 class="f3 near-black">
+      <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/" class="link black dim">
+        自作 SPA アプリケーションを Azure AD / Open ID Connect を使って保護する
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
+業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
+簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
+GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
+しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
+Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
+そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントによる 認証を実現する方法を考えてみたい。
+ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
+この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
+もともと閲覧できていたユーザーを 即時 閲覧不可にするのは、いったん考えないものとする。
+準備 やることは、大きく分けて、下記の2つ
+  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
+  Client アプリを msal で保護する
+  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。
+    </div>
+  </div>
+</div>
+
         
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">

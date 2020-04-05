@@ -4,14 +4,39 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
-    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/activedirectory/</loc>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/azure/</loc>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/vue/</loc>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/</loc>
+    <lastmod>2020-04-04T11:36:27+09:00</lastmod>
   </url>
   
   <url>
@@ -31,11 +56,6 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/</loc>
-    <lastmod>2020-03-08T03:56:39+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
     <lastmod>2020-03-08T03:56:39+09:00</lastmod>
   </url>
   
@@ -71,11 +91,6 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/tags/opencv/</loc>
-    <lastmod>2020-02-16T20:58:40+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/tags/vue/</loc>
     <lastmod>2020-02-16T20:58:40+09:00</lastmod>
   </url>
   
