@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/" />
-<meta property="og:updated_time" content="2020-04-04T11:36:27+09:00" />
+<meta property="og:updated_time" content="2020-04-07T19:39:10+09:00" />
 <meta itemprop="name" content="">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
@@ -115,27 +115,6 @@
     <h1 id="heading">下り坂を昇るブログ</h1>
 <p>プライベートで実装、勉強した技術のメモや、クラウド系のトラブルシューティングに関する発信をしてます。</p>
 
-
-
-<form class="black-80 sans-serif" accept-charset="UTF-8" action="https://formspree.io/kudarizakawonobore@gmail.com" method="POST" role="form">
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray"  for="name">Your Name</label>
-    <input type="text" id="name" name="name" class="w-100 f5 pv3 ph3 bg-light-gray bn"  required placeholder=" "  aria-labelledby="name"/>
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="email">Email Address</label>
-    <input type="email" id="email" name="email" class="w-100 f5 pv3 ph3 bg-light-gray bn"  required placeholder=" "  aria-labelledby="email"/>
-    <div class="requirements f6 gray glow i ph3 overflow-hidden">
-      An email address is required.
-    </div>
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="message">Message</label>
-    <textarea id="message" name="message" class="w-100 f5 pv3 ph3 bg-light-gray bn h4" aria-labelledby="message"></textarea>
-
-    <input class="db w-100 mv2 white pa3 bn hover-shadow hover-bg-blck bg-animate bg-black" type="submit" value="Send" />
-
-</form>
-
-
   </article>
   
   
@@ -159,6 +138,69 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/07-cloud-agreement/" class="color-inherit dim link">
+            クラウドエンジニアのいない組織でクラウド導入を検討するためのガイドライン
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          動機 コロナの影響で、世の中、リモート、在宅中心の流れになっているが、同業他社が続々とリモート化を進めている中、インフラ整備がおいついていないなどの理由から、なかなか踏み切れない組織がある。
+会議のみ、突貫で Zoom や WebEX を導入して難を逃れている組織もあるようだが、これはアリとキリギリスの問題で、ファイルのコラボレーションや、情報資産の保護、認証基盤の準備など、リモートを想定して作られていないものをいきなり移行することは難しい。（技術的な難しさより、むしろマインドシフトの難しさ） なんだかんだで結局出社してしまっている企業も多いようだ。
+そんな組織で、自ら問題意識を持って、リモートの推進を進めるべく、クラウドベースのシステムを導入していこうと思っている立場の人がちらほら、自分の周りに増え始めた。
+が、いかんせん、専門的な知識がなかったり、相談先がなかったり、保守派の意見に対抗できなかったりと、様々な障壁にぶち当たっているようだ。
+自分は、業務内外でクラウドを使うようになって数年の間に、Amazon,Microsoft,Google(GSuite/Office365含む) の3社クラウドサービスすべてにおいてそれぞれ1回以上、契約作業、管理業務に携わった、割とレアな経験があるので、自身の経験や苦労を踏まえて、 推進を進めている人の力になれればと。
+想定している状況 50人以上の組織で、エンジニアがあまり多くない会社や学校、医療機関といった組織で、専門知識がない人が、クラウド導入、リモート導入を進めることになった、という状況を想定。
+50人、という数字の意図は、「一個人の立替経費で月額の支払いをまかなうのが苦しくなる」という意味。給料の体系によってはもうちょっと前後するかもしれない。
+想定しているクラウドは、自身の経験から、 Office365, もしくは GSuite のどちらか、またはその両方。 がっつり開発やら分析やらをしていく企業であれば、AWS, GCP, Azure も検討対象に上がるが、エンジニアでない人がこれらの選定をすることはまれだと推察できるので、除外。
+契約までの流れを理解する まずは、全容を理解するために、契約までの大まかな流れを理解することが重要。 組織の意思決定のスピードによっては、数カ月単位の長丁場になるが、自分がいまどのぐらいの位置にいるのか、次に何が起こるかわかっていると、先手先手で動けるので、安心できる。
+契約に限らず、どんなプロジェクトにも言えることだが、適切なタイミングで、適切な人数で、適切な範囲の検討を行わないと、話が発散して空中分解してしまうので、それぞれどのタイミングで誰を巻き込むべきかはシミュレーションしておくとよい。
+全体の流れ 普段、契約関係をまとめるような業種の方からすると釈迦に説法かもしれないが、クラウドの契約は下記のような流れで話が進み、数回の意思決定を行いながら運用開始にこぎつける。
+意思決定その１（有識者の選定）
+↓
+各社営業さんに相談
+↓
+トライアル
+↓
+意思決定その２（サービスの決定）
+↓
+リセラーさんと相談
+↓
+意思決定その３（管理者の決定）
+意思決定その４（ドメインの決定）
+意思決定その５（サポート契約の決定）
+↓
+リセラーさんと契約
+↓
+意思決定その６（セキュリティポリシーの決定）
+↓
+少人数で運用開始
+↓
+課題確認
+↓
+運用開始
+契約に係る作業自体は、半日もあれば終了するが、初めての場合は1か月以上の長丁場を想定した方がいい。
+なお、長丁場になる原因の9割は、組織内の調整である。 以下、組織内の調整をスムーズに進めるためのコツを紹介しながら、それぞれのフェーズでやるべきことを説明していく。
+意思決定その１（有識者の選定） 一番大事な作業。
+先にも書いた通り、推進自体は組織内の調整がほとんどなので、有識者でなくても何とかなるが、選定や、契約時に出てくる用語の理解、リスクの管理など、とにもかくにも、有識者がいないことには、不安がぬぐい切れないし、なかなか前に進まないことも多い。
+意思決定のスピードによってはそれなりに長丁場になるので、いるのであれば組織内から有識者を募る。組織内で協力が得られそうになければ、手っ取り早く外部から募ってもいい。 (外部から募る場合は謝礼を用意して、最後までコミットしてもらうようにする。)
+各社営業さんに相談 GSuite であれば、Google さん、 Office365 であれば Microsoft さんの営業に相談する。 ここで、契約に関する流れの詳細について教えてくれる。
+        </div>
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/07-cloud-agreement/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             
@@ -233,47 +275,18 @@ IAM と管理 -&gt; IAM から、デプロイに使っているサービスア�
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="color-inherit dim link">
-            Raspberry Pi で QR コードリーダーからプログラムを動かす
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          概要 市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。
-環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
-知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。
-QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。
-自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。
-候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
-下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。
-pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。
-envdev(不採用) pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
-keyboard(採用) バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。
-インストール pip で keyboard をインストールする
-pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.
-        </div>
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="link black dim">
+              Raspberry Pi で QR コードリーダーからプログラムを動かす
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/" class="link black dim">
