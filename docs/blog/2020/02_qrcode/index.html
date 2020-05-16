@@ -6,7 +6,7 @@
     
     <title>下り坂を昇るブログ  | Raspberry Pi で QR コードリーダーからプログラムを動かす</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -27,34 +27,14 @@
     
     <meta property="og:title" content="Raspberry Pi で QR コードリーダーからプログラムを動かす" />
 <meta property="og:description" content="概要 市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。
-環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
-知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。
-QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。
-自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。
-候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
-下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。
-pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。
-envdev(不採用) pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
-keyboard(採用) バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。
-インストール pip で keyboard をインストールする
-pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key." />
+環境 Raspberry Pi 3 OS: Raspbian Python: 3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" />
 <meta property="article:published_time" content="2020-02-20T23:09:00+09:00" />
 <meta property="article:modified_time" content="2020-02-20T23:09:00+09:00" />
 <meta itemprop="name" content="Raspberry Pi で QR コードリーダーからプログラムを動かす">
 <meta itemprop="description" content="概要 市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。
-環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
-知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。
-QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。
-自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。
-候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
-下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。
-pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。
-envdev(不採用) pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
-keyboard(採用) バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。
-インストール pip で keyboard をインストールする
-pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key.">
+環境 Raspberry Pi 3 OS: Raspbian Python: 3.">
 <meta itemprop="datePublished" content="2020-02-20T23:09:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-20T23:09:00&#43;09:00" />
 <meta itemprop="wordCount" content="112">
@@ -64,25 +44,15 @@ pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_
 <meta itemprop="keywords" content="raspberrypi,python,qrcode," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Raspberry Pi で QR コードリーダーからプログラムを動かす"/>
 <meta name="twitter:description" content="概要 市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。
-環境 Raspberry Pi 3 OS: Raspbian Python: 3.6.5
-知っておきたいこと USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。
-QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。
-自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。
-候補 Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は keyboard を採用した。
-下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。
-pynput(不採用) キーボードやマウスの入力を Listen できるライブラリ。 keyboard 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。
-envdev(不採用) pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。
-keyboard(採用) バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。
-インストール pip で keyboard をインストールする
-pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_press(key):global qrif key."/>
+環境 Raspberry Pi 3 OS: Raspbian Python: 3."/>
 
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
-   
-  
+
+
 
   <header>
     <div class="bg-black">
@@ -142,72 +112,72 @@ pip install keyboard実装 import keyboardimport timeqr = &#34;&#34;def key_
 
     <main class="pb7" role="main">
       
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
-          
-        
-      </p>
-      <h1 class="f1 athelas mb1">Raspberry Pi で QR コードリーダーからプログラムを動かす</h1>
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2020-02-20T23:09:00&#43;09:00">February 20, 2020</time>
-      
-      
-    </header>
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">概要</h2>
+  <header class="mt4 w-100">
+    <p class="f6 b helvetica tracked">
+      
+      
+    </p>
+    <h1 class="f1 athelas mb1">Raspberry Pi で QR コードリーダーからプログラムを動かす</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2020-02-20T23:09:00&#43;09:00">February 20, 2020</time>
+    
+    
+  </header>
+
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="概要">概要</h2>
 <p>市販のQRコードリーダーを起動契機にして、何かしらの処理を行うデバイスを作りたいときの実装メモ。</p>
-<h2 id="heading-1">環境</h2>
+<h2 id="環境">環境</h2>
 <p>Raspberry Pi 3
 OS: Raspbian
 Python: 3.6.5</p>
-<h2 id="heading-2">知っておきたいこと</h2>
+<h2 id="知っておきたいこと">知っておきたいこと</h2>
 <p>USB タイプの QR コードリーダーや、バーコードリーダーは、キーボードと同様の入力デバイスとして扱うことができる。</p>
 <p>QRコードリーダーを RaspberryPi に差した状態で、QR コードを Read する（＝デコードする）と、市販の QRコードリーダーがテキスト入力として PC にイベントを送ってくる。
 なので、単に値を解読したいだけなら、テキストエディタを開いた状態で、QRコードを読み込んであげるだけでよい。</p>
 <p>自作のアプリから、デコードした値を処理したいなら、キーボードのイベントをListen し、Enterキーが押されたのを起動契機に処理を実行するプログラムを書いてあげればよい。</p>
-<h2 id="heading-3">候補</h2>
+<h2 id="候補">候補</h2>
 <p>Python でキーボードの入力を取得するためのライブラリはいくつかあるが、今回は <code>keyboard</code> を採用した。</p>
 <p>下記は、不採用になったものを含めたキーボードの入力を取得するためのライブラリ。</p>
-<h3 id="pynput">pynput(不採用)</h3>
+<h3 id="pynput不採用">pynput(不採用)</h3>
 <p>キーボードやマウスの入力を Listen できるライブラリ。
 <code>keyboard</code> 同様、文字列として入力を受け付けられるが、 SSH 経由でバックグラウンド実行させることができなさそうなので、不採用。</p>
-<h3 id="envdev">envdev(不採用)</h3>
+<h3 id="envdev不採用">envdev(不採用)</h3>
 <p>pynput と異なり、SSH 経由でバックグラウンド実行させられる他、デバイスを指定することができる。
 一方で、発生したイベントがコード文字列(KEY_A や KEY_B など）になってしまうためコードを文字列に戻してやる処理が必要になる。</p>
-<h3 id="keyboard">keyboard(採用)</h3>
+<h3 id="keyboard採用">keyboard(採用)</h3>
 <p>バックグラウンドで実行でき、文字列をわりと簡単に処理できるので、採用。</p>
-<h2 id="heading-4">インストール</h2>
+<h2 id="インストール">インストール</h2>
 <p>pip で keyboard をインストールする</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> pip install keyboard
-</code></pre></div><h2 id="heading-5">実装</h2>
+</code></pre></div><h2 id="実装">実装</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> keyboard
 <span style="color:#f92672">import</span> time
 
-qr <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>
+qr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">key_press</span>(key):
     <span style="color:#66d9ef">global</span> qr
-    <span style="color:#66d9ef">if</span> key<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enter</span><span style="color:#e6db74">&#34;</span>:
+    <span style="color:#66d9ef">if</span> key<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;enter&#34;</span>:
         <span style="color:#66d9ef">print</span>(qr)
-    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">shift</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">in</span> key<span style="color:#f92672">.</span>name:
-        qr <span style="color:#f92672">+</span><span style="color:#f92672">=</span> key<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>lstrip(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">shift</span><span style="color:#e6db74">&#39;</span>)
+    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#39;shift&#39;</span> <span style="color:#f92672">in</span> key<span style="color:#f92672">.</span>name:
+        qr <span style="color:#f92672">+=</span> key<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>lstrip(<span style="color:#e6db74">&#39;shift&#39;</span>)
         <span style="color:#66d9ef">return</span>
     <span style="color:#66d9ef">else</span>:
-        qr <span style="color:#f92672">+</span><span style="color:#f92672">=</span> key<span style="color:#f92672">.</span>name
+        qr <span style="color:#f92672">+=</span> key<span style="color:#f92672">.</span>name
         <span style="color:#66d9ef">return</span>
-    qr <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>
+    qr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
 keyboard<span style="color:#f92672">.</span>on_press(key_press)
 <span style="color:#66d9ef">while</span> True:
     time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
-</code></pre></div><h2 id="20200225">追記(2020/02/25)</h2>
+</code></pre></div><h2 id="追記20200225">追記(2020/02/25)</h2>
 <p>keyboard では、大文字や shift キーを押した際の文字（？など）を <code>shiftX</code> のように認識してしまうことが判明。
 key.name が shift を含んでいたら、shiftをトリミングするように修正して、完了。</p>
-<h2 id="heading-6">参考</h2>
+<h2 id="参考">参考</h2>
 <p><a href="https://qiita.com/teraken_/items/0e8c5b31567f966773b6">https://qiita.com/teraken_/items/0e8c5b31567f966773b6</a></p>
 <p><a href="https://tutorialmore.com/questions-559657.htm">https://tutorialmore.com/questions-559657.htm</a></p>
 <p><a href="https://qiita.com/teraken_/items/0e8c5b31567f966773b6">https://qiita.com/teraken_/items/0e8c5b31567f966773b6</a></p>
@@ -230,10 +200,31 @@ key.name が shift を含んでいたら、shiftをトリミングするよう�
 <div class="mt6">
       
       
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <aside class="w-30-l mt6-l">
+  <aside class="w-30-l mt6-l">
+    <aside class="xToc">
+      <div class="xToc_title">目次</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#環境">環境</a></li>
+    <li><a href="#知っておきたいこと">知っておきたいこと</a></li>
+    <li><a href="#候補">候補</a>
+      <ul>
+        <li><a href="#pynput不採用">pynput(不採用)</a></li>
+        <li><a href="#envdev不採用">envdev(不採用)</a></li>
+        <li><a href="#keyboard採用">keyboard(採用)</a></li>
+      </ul>
+    </li>
+    <li><a href="#インストール">インストール</a></li>
+    <li><a href="#実装">実装</a></li>
+    <li><a href="#追記20200225">追記(2020/02/25)</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+    </aside>
 
 
 
@@ -251,7 +242,7 @@ key.name が shift を含んでいたら、shiftをトリミングするよう�
 
 </aside>
 
-  </article>
+</article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

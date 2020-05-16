@@ -6,7 +6,7 @@
     
     <title>下り坂を昇るブログ  | はてなブログを卒業して GitHubPages × Hugo にしてみた</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -27,40 +27,14 @@
     
     <meta property="og:title" content="はてなブログを卒業して GitHubPages × Hugo にしてみた" />
 <meta property="og:description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
-エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
-はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
-キャプチャ管理問題 キャプチャを貼り付けるときは、ブログが管理しているディレクトリのリンクを記述することになる。 ローカルで確認しにくいうえ、アップロードのたびにサイトに行ったり、「ここにキャプチャ」的な記述を残したりするのが面倒。
-Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしいことに加え、上記の問題と相まって、サイト → ローカル へのコピペも必要になったりして、デグレが発生する確率も上がる。
-ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
-実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
-Hugo 静的サイトジェネレータを複数試して比較してみた結果、Hexo と Hugo が候補に残った。
-Hexo は Node ベースの静的サイトジェネレータで、Hugo と引けを取らない機能の充実ぶりと、GithubPages に公開するまでの手順が非常に簡単なのが魅力だったが、LiveReload の速さが決め手で、Hugo を選択することにした。
-Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
-インストール方法 前提 下記はインストール済みである前提
- Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
-https://github.com/gohugoio/hugo/releases
-公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
-各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成される。" />
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/" />
 <meta property="article:published_time" content="2020-01-20T23:30:27+09:00" />
 <meta property="article:modified_time" content="2020-01-20T23:30:27+09:00" />
 <meta itemprop="name" content="はてなブログを卒業して GitHubPages × Hugo にしてみた">
 <meta itemprop="description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
-エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
-はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
-キャプチャ管理問題 キャプチャを貼り付けるときは、ブログが管理しているディレクトリのリンクを記述することになる。 ローカルで確認しにくいうえ、アップロードのたびにサイトに行ったり、「ここにキャプチャ」的な記述を残したりするのが面倒。
-Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしいことに加え、上記の問題と相まって、サイト → ローカル へのコピペも必要になったりして、デグレが発生する確率も上がる。
-ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
-実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
-Hugo 静的サイトジェネレータを複数試して比較してみた結果、Hexo と Hugo が候補に残った。
-Hexo は Node ベースの静的サイトジェネレータで、Hugo と引けを取らない機能の充実ぶりと、GithubPages に公開するまでの手順が非常に簡単なのが魅力だったが、LiveReload の速さが決め手で、Hugo を選択することにした。
-Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
-インストール方法 前提 下記はインストール済みである前提
- Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
-https://github.com/gohugoio/hugo/releases
-公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
-各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成される。">
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。">
 <meta itemprop="datePublished" content="2020-01-20T23:30:27&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-20T23:30:27&#43;09:00" />
 <meta itemprop="wordCount" content="210">
@@ -70,28 +44,15 @@ https://github.com/gohugoio/hugo/releases
 <meta itemprop="keywords" content="windows,hugo," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="はてなブログを卒業して GitHubPages × Hugo にしてみた"/>
 <meta name="twitter:description" content="動機 いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた
-エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。
-はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、 そうすると下記のような問題にぶち当たる。
-キャプチャ管理問題 キャプチャを貼り付けるときは、ブログが管理しているディレクトリのリンクを記述することになる。 ローカルで確認しにくいうえ、アップロードのたびにサイトに行ったり、「ここにキャプチャ」的な記述を残したりするのが面倒。
-Preview 煩わしい問題 記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。 これが、ページ遷移が何度も発生するため、かなり煩わしいことに加え、上記の問題と相まって、サイト → ローカル へのコピペも必要になったりして、デグレが発生する確率も上がる。
-ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。
-実際、はてなブログ用のCSS やらをローカルに落としてきて、疑似的に開発環境を構築することもできるのだろうが、最近は静的サイトジェネレータと、GitHubPages を使えば、簡単に上記課題を解決できるので思い切って移行してみることにした。
-Hugo 静的サイトジェネレータを複数試して比較してみた結果、Hexo と Hugo が候補に残った。
-Hexo は Node ベースの静的サイトジェネレータで、Hugo と引けを取らない機能の充実ぶりと、GithubPages に公開するまでの手順が非常に簡単なのが魅力だったが、LiveReload の速さが決め手で、Hugo を選択することにした。
-Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。
-インストール方法 前提 下記はインストール済みである前提
- Go Git  インストール手順（簡単） 下記リンクから、exe をダウンロードして、Pathを通すだけでOK
-https://github.com/gohugoio/hugo/releases
-公式サイトには、　Chocolatey を使ってインストールする方法が記述されているので、 お好きな方で。
-各種 コマンド サイトを作成 hugo new site &lt;サイトを管理するディレクトリ名&gt;上記コマンドを実行すると、ディレクトリに必要なファイルが生成される。"/>
+エディタ・コピペ問題 普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。"/>
 
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
-   
-  
+
+
 
   <header>
     <div class="bg-black">
@@ -151,33 +112,33 @@ https://github.com/gohugoio/hugo/releases
 
     <main class="pb7" role="main">
       
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
-          
-        
-      </p>
-      <h1 class="f1 athelas mb1">はてなブログを卒業して GitHubPages × Hugo にしてみた</h1>
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2020-01-20T23:30:27&#43;09:00">January 20, 2020</time>
-      
-      
-    </header>
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">動機</h2>
+  <header class="mt4 w-100">
+    <p class="f6 b helvetica tracked">
+      
+      
+    </p>
+    <h1 class="f1 athelas mb1">はてなブログを卒業して GitHubPages × Hugo にしてみた</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2020-01-20T23:30:27&#43;09:00">January 20, 2020</time>
+    
+    
+  </header>
+
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="動機">動機</h2>
 <p>いままで個人ブログの作成を はてなブログでやっていたが、下記のような課題を感じていた</p>
-<h3 id="heading-1">エディタ・コピペ問題</h3>
+<h3 id="エディタコピペ問題">エディタ・コピペ問題</h3>
 <p>普段、あらゆるエディタのキーバインドを Vim 仕様にしているせいで、ブログの記述も Vim キーバインドでやりたい。</p>
 <p>はてなブログの サイト上のエディタ では 私の知る限り、 Vim キーバインドで記述するのは難しい。
 そのため、ローカルで Markdown 形式でファイルを作成し、コピペする方式になるのだが、
 そうすると下記のような問題にぶち当たる。</p>
-<h4 id="heading-2">キャプチャ管理問題</h4>
+<h4 id="キャプチャ管理問題">キャプチャ管理問題</h4>
 <p>キャプチャを貼り付けるときは、ブログが管理しているディレクトリのリンクを記述することになる。
 ローカルで確認しにくいうえ、アップロードのたびにサイトに行ったり、「ここにキャプチャ」的な記述を残したりするのが面倒。</p>
-<h4 id="preview-">Preview 煩わしい問題</h4>
+<h4 id="preview-煩わしい問題">Preview 煩わしい問題</h4>
 <p>記事を書き終わった後、ローカルで記述した記事を公開用に調整（主に見た目）するときに、何度も Preview → 書き直し を繰り返すことになる。
 これが、ページ遷移が何度も発生するため、かなり煩わしいことに加え、上記の問題と相まって、サイト → ローカル へのコピペも必要になったりして、デグレが発生する確率も上がる。</p>
 <p>ローカルでサクサクと、公開用の見た目を調整して、ワンコマンドで公開、なんてことを目指したいところ。</p>
@@ -186,63 +147,63 @@ https://github.com/gohugoio/hugo/releases
 <p>静的サイトジェネレータを複数試して比較してみた結果、Hexo と Hugo が候補に残った。</p>
 <p>Hexo は Node ベースの静的サイトジェネレータで、Hugo と引けを取らない機能の充実ぶりと、GithubPages に公開するまでの手順が非常に簡単なのが魅力だったが、LiveReload の速さが決め手で、Hugo を選択することにした。</p>
 <p>Hugo とは、静的サイトジェネレータの1種で、 Go によって動く。</p>
-<h2 id="heading-3">インストール方法</h2>
-<h3 id="heading-4">前提</h3>
+<h2 id="インストール方法">インストール方法</h2>
+<h3 id="前提">前提</h3>
 <p>下記はインストール済みである前提</p>
 <ul>
 <li>Go</li>
 <li>Git</li>
 </ul>
-<h3 id="heading-5">インストール手順（簡単）</h3>
+<h3 id="インストール手順簡単">インストール手順（簡単）</h3>
 <p>下記リンクから、exe をダウンロードして、Pathを通すだけでOK</p>
 <p><a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p>
 <p><a href="https://gohugo.io/getting-started/installing/">公式サイト</a>には、　Chocolatey を使ってインストールする方法が記述されているので、
 お好きな方で。</p>
-<h2 id="-">各種 コマンド</h2>
-<h3 id="heading-6">サイトを作成</h3>
+<h2 id="各種-コマンド">各種 コマンド</h2>
+<h3 id="サイトを作成">サイトを作成</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  hugo new site &lt;サイトを管理するディレクトリ名&gt;
 </code></pre></div><p>上記コマンドを実行すると、ディレクトリに必要なファイルが生成される。</p>
-<h3 id="heading-7">新しい記事を作成</h3>
+<h3 id="新しい記事を作成">新しい記事を作成</h3>
 <p>新しいページを作成するには、下記のコマンドを実行する。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   hugo new post/00_hugo.md
-</code></pre></div><h3 id="heading-8">ローカルで確認するには</h3>
+</code></pre></div><h3 id="ローカルで確認するには">ローカルで確認するには</h3>
 <p>下記コマンドで、 ローカルにサーバーを立ち上げて、 Live Reload で確認できる</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   hugo server -D
 </code></pre></div><p>反映がかなり早いので、細かな修正も即座に確認できる。</p>
-<h3 id="hugo-">Hugo のサイト公開方法</h3>
+<h3 id="hugo-のサイト公開方法">Hugo のサイト公開方法</h3>
 <p>Hugo 、というより、Hugo を使って GitHubPages を公開する方法を紹介。</p>
 <p>大まかな方針としては、 Hugo のパブリッシュディレクトリ名を <code>docs</code> に設定し、
 docs ディレクトリを GitHub に Push することで、ブログが自動で公開される
 仕組みを設定してしまおう、というもの。</p>
-<h4 id="github-">GitHub 上でやること</h4>
-<h5 id="--githubpages-">リポジトリ に GitHubPages の設定をする</h5>
+<h4 id="github-上でやること">GitHub 上でやること</h4>
+<h5 id="リポジトリ-に-githubpages-の設定をする">リポジトリ に GitHubPages の設定をする</h5>
 <p>リポジトリ を開いて、 Settings → GitHubPages から、Source を <code>master branch /docs folder</code> に設定する</p>
 <p><img src="./images/githubsetting.png" alt="キャプチャ"></p>
-<h4 id="heading-9">ローカルでやること</h4>
+<h4 id="ローカルでやること">ローカルでやること</h4>
 <p>BaserURL の調整と、 PublishDir の調整をしてやる。</p>
-<h5 id="baseurl-">BaseURL を公開するリポジトリに設定する</h5>
+<h5 id="baseurl-を公開するリポジトリに設定する">BaseURL を公開するリポジトリに設定する</h5>
 <p><code>config.toml</code> を編集し、BaseURL を実際に公開する GitHubPages のURL に設定する。
 私の場合、 GitHub のID が、 <code>kudarizakawonobore</code> で、 公開するリポジトリ名が <code>techblog</code> なので、 BaseURL は下記のように設定する。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml:config.toml" data-lang="toml:config.toml">  <span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;https://kudarizakawonobore.github.io/techblog/&#34;</span>
   <span style="color:#a6e22e">canonifyurls</span> = <span style="color:#66d9ef">true</span>
-</code></pre></div><h5 id="publish--docs-">Publish ディレクトリを docs にする</h5>
+</code></pre></div><h5 id="publish-ディレクトリを-docs-にする">Publish ディレクトリを docs にする</h5>
 <p>デフォルトでは、Publish ディレクトリは public になるため、これを docs にしてやる。
 GitHubPages に公開されるディレクトリ名を public にする方法がわからなかったので、ひとまずビルド側を調整。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml:config.toml" data-lang="toml:config.toml">  <span style="color:#a6e22e">publishDir</span> = <span style="color:#e6db74">&#34;docs&#34;</span>
-</code></pre></div><h5 id="-github-">リモートリポジトリを GitHub のリポジトリに設定する</h5>
+</code></pre></div><h5 id="リモートリポジトリを-github-のリポジトリに設定する">リモートリポジトリを GitHub のリポジトリに設定する</h5>
 <p>下記コマンドで リモートリポジトリを設定する。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  git init
   git remote add origin &lt;リポジトリURL&gt;
-</code></pre></div><h5 id="heading-10">ドキュメントをビルドする</h5>
+</code></pre></div><h5 id="ドキュメントをビルドする">ドキュメントをビルドする</h5>
 <p>下記コマンドで docsディレクトリにファイルが展開される</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  hugo
 </code></pre></div><p>この状態で、master ブランチにプッシュしてあげれば、ブログが公開される。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  git add docs
   git commit -m <span style="color:#e6db74">&#39;first commit&#39;</span>
   git push -u origin master
-</code></pre></div><h2 id="heading-11">感想</h2>
+</code></pre></div><h2 id="感想">感想</h2>
 <p>初期設定は多少面倒だが、最初に設定さえしてしまえば あとは記事の追加のみに集中できるのが良い。</p>
-<h2 id="heading-12">参考</h2>
+<h2 id="参考">参考</h2>
 <p><a href="https://knowledge.sakura.ad.jp/22908/">https://knowledge.sakura.ad.jp/22908/</a></p>
 <ul class="pa0">
   
@@ -258,17 +219,46 @@ GitHubPages に公開されるディレクトリ名を public にする方法が
 <div class="mt6">
       
       
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <aside class="w-30-l mt6-l">
+  <aside class="w-30-l mt6-l">
+    <aside class="xToc">
+      <div class="xToc_title">目次</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#動機">動機</a>
+      <ul>
+        <li><a href="#エディタコピペ問題">エディタ・コピペ問題</a></li>
+      </ul>
+    </li>
+    <li><a href="#hugo">Hugo</a></li>
+    <li><a href="#インストール方法">インストール方法</a>
+      <ul>
+        <li><a href="#前提">前提</a></li>
+        <li><a href="#インストール手順簡単">インストール手順（簡単）</a></li>
+      </ul>
+    </li>
+    <li><a href="#各種-コマンド">各種 コマンド</a>
+      <ul>
+        <li><a href="#サイトを作成">サイトを作成</a></li>
+        <li><a href="#新しい記事を作成">新しい記事を作成</a></li>
+        <li><a href="#ローカルで確認するには">ローカルで確認するには</a></li>
+        <li><a href="#hugo-のサイト公開方法">Hugo のサイト公開方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#感想">感想</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+    </aside>
 
 
 
 
 </aside>
 
-  </article>
+</article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

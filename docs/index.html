@@ -6,7 +6,7 @@
     
     <title>下り坂を昇るブログ </title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/" />
-<meta property="og:updated_time" content="2020-04-07T19:39:10+09:00" />
+<meta property="og:updated_time" content="2020-05-15T22:05:07+09:00" />
 <meta itemprop="name" content="">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
@@ -112,7 +112,7 @@
     <main class="pb7" role="main">
       
   <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-    <h1 id="heading">下り坂を昇るブログ</h1>
+    <h1 id="下り坂を昇るブログ">下り坂を昇るブログ</h1>
 <p>プライベートで実装、勉強した技術のメモや、クラウド系のトラブルシューティングに関する発信をしてます。</p>
 
   </article>
@@ -147,6 +147,31 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/08-it-site-structure/" class="color-inherit dim link">
+            エンジニアは建築家と医者の両方の側面を持っているという話
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          概要 先日、Twitter で 「『1時間の作業の工数の見積もりに30分かかる』ことに驚いている顧客にどう説明したらいいか」という Tweet が流れてきた。
+自分は元々バックエンド系の仕事を中心にしているのだが、最近は DevOps 的な仕事の進め方をすることも多く、 エンジニアでない人とやり取りをする機会が増えている。 すると、やはり時折こういった場面に出くわすことがある。
+        </div>
+          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/08-it-site-structure/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/07-cloud-agreement/" class="color-inherit dim link">
             クラウドエンジニアのいない組織でクラウド導入を検討するためのガイドライン
             </a>
@@ -154,44 +179,6 @@
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
           動機 コロナの影響で、世の中、リモート、在宅中心の流れになっているが、同業他社が続々とリモート化を進めている中、インフラ整備がおいついていないなどの理由から、なかなか踏み切れない組織がある。
 会議のみ、突貫で Zoom や WebEX を導入して難を逃れている組織もあるようだが、これはアリとキリギリスの問題で、ファイルのコラボレーションや、情報資産の保護、認証基盤の準備など、リモートを想定して作られていないものをいきなり移行することは難しい。（技術的な難しさより、むしろマインドシフトの難しさ） なんだかんだで結局出社してしまっている企業も多いようだ。
-そんな組織で、自ら問題意識を持って、リモートの推進を進めるべく、クラウドベースのシステムを導入していこうと思っている立場の人がちらほら、自分の周りに増え始めた。
-が、いかんせん、専門的な知識がなかったり、相談先がなかったり、保守派の意見に対抗できなかったりと、様々な障壁にぶち当たっているようだ。
-自分は、業務内外でクラウドを使うようになって数年の間に、Amazon,Microsoft,Google(GSuite/Office365含む) の3社クラウドサービスすべてにおいてそれぞれ1回以上、契約作業、管理業務に携わった、割とレアな経験があるので、自身の経験や苦労を踏まえて、 推進を進めている人の力になれればと。
-想定している状況 50人以上の組織で、エンジニアがあまり多くない会社や学校、医療機関といった組織で、専門知識がない人が、クラウド導入、リモート導入を進めることになった、という状況を想定。
-50人、という数字の意図は、「一個人の立替経費で月額の支払いをまかなうのが苦しくなる」という意味。給料の体系によってはもうちょっと前後するかもしれない。
-想定しているクラウドは、自身の経験から、 Office365, もしくは GSuite のどちらか、またはその両方。 がっつり開発やら分析やらをしていく企業であれば、AWS, GCP, Azure も検討対象に上がるが、エンジニアでない人がこれらの選定をすることはまれだと推察できるので、除外。
-契約までの流れを理解する まずは、全容を理解するために、契約までの大まかな流れを理解することが重要。 組織の意思決定のスピードによっては、数カ月単位の長丁場になるが、自分がいまどのぐらいの位置にいるのか、次に何が起こるかわかっていると、先手先手で動けるので、安心できる。
-契約に限らず、どんなプロジェクトにも言えることだが、適切なタイミングで、適切な人数で、適切な範囲の検討を行わないと、話が発散して空中分解してしまうので、それぞれどのタイミングで誰を巻き込むべきかはシミュレーションしておくとよい。
-全体の流れ 普段、契約関係をまとめるような業種の方からすると釈迦に説法かもしれないが、クラウドの契約は下記のような流れで話が進み、数回の意思決定を行いながら運用開始にこぎつける。
-意思決定その１（有識者の選定）
-↓
-各社営業さんに相談
-↓
-トライアル
-↓
-意思決定その２（サービスの決定）
-↓
-リセラーさんと相談
-↓
-意思決定その３（管理者の決定）
-意思決定その４（ドメインの決定）
-意思決定その５（サポート契約の決定）
-↓
-リセラーさんと契約
-↓
-意思決定その６（セキュリティポリシーの決定）
-↓
-少人数で運用開始
-↓
-課題確認
-↓
-運用開始
-契約に係る作業自体は、半日もあれば終了するが、初めての場合は1か月以上の長丁場を想定した方がいい。
-なお、長丁場になる原因の9割は、組織内の調整である。 以下、組織内の調整をスムーズに進めるためのコツを紹介しながら、それぞれのフェーズでやるべきことを説明していく。
-意思決定その１（有識者の選定） 一番大事な作業。
-先にも書いた通り、推進自体は組織内の調整がほとんどなので、有識者でなくても何とかなるが、選定や、契約時に出てくる用語の理解、リスクの管理など、とにもかくにも、有識者がいないことには、不安がぬぐい切れないし、なかなか前に進まないことも多い。
-意思決定のスピードによってはそれなりに長丁場になるので、いるのであれば組織内から有識者を募る。組織内で協力が得られそうになければ、手っ取り早く外部から募ってもいい。 (外部から募る場合は謝礼を用意して、最後までコミットしてもらうようにする。)
-各社営業さんに相談 GSuite であれば、Google さん、 Office365 であれば Microsoft さんの営業に相談する。 ここで、契約に関する流れの詳細について教えてくれる。
         </div>
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/07-cloud-agreement/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
@@ -218,55 +205,8 @@
           動機 クラウド上に、一般公開したくない便利ツールや組織内ツールを配置するときなどは、不特定多数の人間に見られないように、何らかの制限を加えることになる。
 業務拠点が1か所に限定される場合は、IPアドレス制限で事足りてしまうこともあるが、リモートワークやら、他企業との連携など、多様な業務に対応するのは難しく、あるタイミングから、認証の基盤が必要になってくる。
 簡易的でいいのであれば、basic 認証でもいいのだが、パスワードが乱立すると管理が煩雑になる。クラウド上にアップロードしたコンテンツを、組織内 AD のアカウントで閲覧制限できるようになると、運用も楽になって安心である。
-GCP (Google アカウント）でやる場合 GCP でやる場合は割と簡単で、 App Engine 上にコンテンツを作成し、 Identity Aware Proxy で保護してやれば、管理者がホワイトリストで一覧化した Google アカウント のみに閲覧を許可することができる。
-しかし、アカウント管理が AzureAD ベースになっている組織で、非公式に Google アカウントを発行すると、退職/退プロ者 のアカウント削除漏れが発生する可能性が出てきて、インシデントにつながりやすい。(人事部の運用も大変になる)
-Azure AD のアカウントを GSuite に統合する方法もあるが、 GSuite の管理者権限が必要だったり、組織全体を巻き込んだ大がかりな意思決定が必要になるっぽい。
-そのため、あくまでAzure のリソースや、AD の設定をいじるだけで、MSアカウントによる 認証を実現する方法を考えてみたい。
-ゴール Blob 上にホストした SPA(Vue.js で実装) を、ホワイトリストに登録した AD ユーザー のみが閲覧できるようになれば OK。
-この時、ホワイトリストに登録するのは、テナント外の人間も含む。（パートナー企業とか、子会社、親会社への閲覧も想定）
-もともと閲覧できていたユーザーを 即時 閲覧不可にするのは、いったん考えないものとする。
-準備 やることは、大きく分けて、下記の2つ
-  Azure AD のアプリケーションを作成し、ユーザーを割り当てる
-  Client アプリを msal で保護する
-  Azure AD の アプリケーションの作成 Azure Portal から、 Azure Active Directory -&gt; アプリの登録 と進む。
         </div>
           <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="color-inherit dim link">
-            GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          概要 自分の勉強用のメモ書きなど、一般公開はしたくないものの、インターネット上から一部の 人に見せたいようなドキュメントは、普段 AppEngine × IdentityAwareProxy で認証付きサイトとして限定公開している。
-デプロイを手動でやると面倒なので、BitBucket の BuildPipeline から自動でデプロイするように設定しているのだが、2週間ぐらい前に突然失敗するようになっていた。
-対象となる人 gcloud app deploy コマンド実行時、下記のように、Failed to create cloud build: Permission denied. と表示される人。
-結論 題名の通り。デプロイに使っている サービスアカウントから、CloudBuild を実行できるようにしてあげたらデプロイできるようになる。
-以下、手順。
-API の有効化 プロジェクトで普段 CloudBuild を使っていない場合は、API を有効化してやる。 プロジェクトオーナー権限でデプロイしている人は、この手順だけでOKのはず。
-APIとサービス から API の有効化 ボタンを押下して、API を有効化する。
-当該サービスアカウントに CloudBuild の実行権限を付与する サービスアカウントをきっちり管理している人は、最低限の権限しか与えていないはずなので、 CloudBuild サービスアカウント ロールを付与してやる必要がある。
-IAM と管理 -&gt; IAM から、デプロイに使っているサービスアカウントを選択して、 下記のように、Cloud Build サービスアカウント の役割を追加する。
-最終的に、下記の権限がついていればOK
-  AppEngine 管理者
-  Cloud Build サービスアカウント
-  ストレージオブジェクト管理者
-        </div>
-          <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
       </div>
     </div>
@@ -281,6 +221,12 @@ IAM と管理 -&gt; IAM から、デプロイに使っているサービスア�
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/04-appengine-deploy/" class="link black dim">
+              GCP AppEngine のデプロイに Cloud Build の権限が必要になったっぽい
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="https://kudarizakawonobore.github.io/techblog/blog/2020/02_qrcode/" class="link black dim">

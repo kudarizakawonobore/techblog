@@ -6,7 +6,7 @@
     
     <title>下り坂を昇るブログ  | iPhone のカメラで撮影した画像を直接PC に取り込む</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.0" />
+    <meta name="generator" content="Hugo 0.70.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -28,16 +28,7 @@
     <meta property="og:title" content="iPhone のカメラで撮影した画像を直接PC に取り込む" />
 <meta property="og:description" content="動機 Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。
 ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。
-一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。
-せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。
-結論 今回は外部のツールを使うだけなので、いたってシンプル。 iVCam という iPhone のアプリを使うだけ。
-準備 スマホ側と、PC 側にアプリをインストールするだけ。
-スマホ側 iVcam で検索。 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。
-PC 版 こちらのサイトからダウンロードして、インストールする。 https://www.e2esoft.com/ivcam/
-実行するとき PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。
-撮影した画像は、アプリ側で任意のディレクトリに保存できる。 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。
-利点 無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。
-欠点 解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。" />
+一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/01-capture/" />
 <meta property="article:published_time" content="2020-02-16T20:58:40+09:00" />
@@ -45,16 +36,7 @@ PC 版 こちらのサイトからダウンロードして、インストール�
 <meta itemprop="name" content="iPhone のカメラで撮影した画像を直接PC に取り込む">
 <meta itemprop="description" content="動機 Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。
 ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。
-一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。
-せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。
-結論 今回は外部のツールを使うだけなので、いたってシンプル。 iVCam という iPhone のアプリを使うだけ。
-準備 スマホ側と、PC 側にアプリをインストールするだけ。
-スマホ側 iVcam で検索。 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。
-PC 版 こちらのサイトからダウンロードして、インストールする。 https://www.e2esoft.com/ivcam/
-実行するとき PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。
-撮影した画像は、アプリ側で任意のディレクトリに保存できる。 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。
-利点 無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。
-欠点 解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。">
+一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。">
 <meta itemprop="datePublished" content="2020-02-16T20:58:40&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-16T20:58:40&#43;09:00" />
 <meta itemprop="wordCount" content="43">
@@ -65,24 +47,15 @@ PC 版 こちらのサイトからダウンロードして、インストール�
 <meta name="twitter:title" content="iPhone のカメラで撮影した画像を直接PC に取り込む"/>
 <meta name="twitter:description" content="動機 Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。
 ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。
-一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。
-せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。
-結論 今回は外部のツールを使うだけなので、いたってシンプル。 iVCam という iPhone のアプリを使うだけ。
-準備 スマホ側と、PC 側にアプリをインストールするだけ。
-スマホ側 iVcam で検索。 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。
-PC 版 こちらのサイトからダウンロードして、インストールする。 https://www.e2esoft.com/ivcam/
-実行するとき PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。
-撮影した画像は、アプリ側で任意のディレクトリに保存できる。 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。
-利点 無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。
-欠点 解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。"/>
+一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。"/>
 
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
-   
-  
+
+
 
   <header>
     <div class="bg-black">
@@ -142,46 +115,46 @@ PC 版 こちらのサイトからダウンロードして、インストール�
 
     <main class="pb7" role="main">
       
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
-          
-        
-      </p>
-      <h1 class="f1 athelas mb1">iPhone のカメラで撮影した画像を直接PC に取り込む</h1>
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2020-02-16T20:58:40&#43;09:00">February 16, 2020</time>
-      
-      
-    </header>
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="heading">動機</h2>
+  <header class="mt4 w-100">
+    <p class="f6 b helvetica tracked">
+      
+      
+    </p>
+    <h1 class="f1 athelas mb1">iPhone のカメラで撮影した画像を直接PC に取り込む</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2020-02-16T20:58:40&#43;09:00">February 16, 2020</time>
+    
+    
+  </header>
+
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="動機">動機</h2>
 <p>Jupyter/OpenCV などで画像処理のロジックを書いていると、主に閾値調整やフィルタリング処理が、テスト用に使っている画像に局所最適化されてしまうことがままある。</p>
 <p>ある程度ロジックを書いた後、複数の写真を撮ってテストできれば、調整もたやすく、コードの汎用性も上がるはず。</p>
 <p>一方で、iPhone の画像は、何枚か撮影して、メールや iCloud, Google Photo などを使えばインターネット越しで共有できるが、そうすると、ファイル名がわかりづらかったり、Zip を解凍したりと、いくつか面倒な作業が発生する。</p>
 <p>せっかく手元に iPhone があるのだから、直接取り込んであげられれば、作業もはかどりそうなものである。</p>
-<h2 id="heading-1">結論</h2>
+<h2 id="結論">結論</h2>
 <p>今回は外部のツールを使うだけなので、いたってシンプル。
 iVCam という iPhone のアプリを使うだけ。</p>
-<h2 id="heading-2">準備</h2>
+<h2 id="準備">準備</h2>
 <p>スマホ側と、PC 側にアプリをインストールするだけ。</p>
-<h3 id="heading-3">スマホ側</h3>
+<h3 id="スマホ側">スマホ側</h3>
 <p>iVcam で検索。
 無償版は、ファイル内にロゴが映りこむため、有償版を使った方が良い。</p>
-<h3 id="pc-">PC 版</h3>
+<h3 id="pc-版">PC 版</h3>
 <p>こちらのサイトからダウンロードして、インストールする。
 <a href="https://www.e2esoft.com/ivcam/">https://www.e2esoft.com/ivcam/</a></p>
-<h2 id="heading-4">実行するとき</h2>
+<h2 id="実行するとき">実行するとき</h2>
 <p>PC,スマホの両方でアプリを起動している状態で、かつ、同一ネットワーク上にいると、iPhone のカメラに映っている映像がそのままPC でキャプチャ、保存できる。</p>
 <p>撮影した画像は、アプリ側で任意のディレクトリに保存できる。
 機械学習用に、アノテーション付きでファイルを管理したい場合は、撮影するタイミングでディレクトリ分けができるので、画像の管理がかなりラクになる。</p>
-<h2 id="heading-5">利点</h2>
+<h2 id="利点">利点</h2>
 <p>無線ネットワーク越しにファイルを取り込めるので、例えば、有線のWebカメラのように物理的な範囲の制限がないのが魅力。
 例えば、スマホを3脚に固定しておいて、定点で複数枚写真を撮るような要件にも対応できる。</p>
-<h2 id="heading-6">欠点</h2>
+<h2 id="欠点">欠点</h2>
 <p>解像度はそんなに高くない模様。そのため、OCR に使おうと思うと、いまいち文字が認識しづらかったりする。</p>
 <ul class="pa0">
   
@@ -205,17 +178,35 @@ iVCam という iPhone のアプリを使うだけ。</p>
 <div class="mt6">
       
       
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <aside class="w-30-l mt6-l">
+  <aside class="w-30-l mt6-l">
+    <aside class="xToc">
+      <div class="xToc_title">目次</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#動機">動機</a></li>
+    <li><a href="#結論">結論</a></li>
+    <li><a href="#準備">準備</a>
+      <ul>
+        <li><a href="#スマホ側">スマホ側</a></li>
+        <li><a href="#pc-版">PC 版</a></li>
+      </ul>
+    </li>
+    <li><a href="#実行するとき">実行するとき</a></li>
+    <li><a href="#利点">利点</a></li>
+    <li><a href="#欠点">欠点</a></li>
+  </ul>
+</nav>
+    </aside>
 
 
 
 
 </aside>
 
-  </article>
+</article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

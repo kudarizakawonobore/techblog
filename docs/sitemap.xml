@@ -4,14 +4,23 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-04-07T19:39:10+09:00</lastmod>
+    <lastmod>2020-05-15T22:05:07+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
-    <lastmod>2020-04-07T19:39:10+09:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-05-15T22:05:07+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/</loc>
+    <lastmod>2020-05-15T22:05:07+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/08-it-site-structure/</loc>
+    <lastmod>2020-05-15T22:05:07+09:00</lastmod>
   </url>
   
   <url>
@@ -112,10 +121,6 @@
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/00-hugo/</loc>
     <lastmod>2020-01-20T23:30:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/blog/</loc>
   </url>
   
   <url>
