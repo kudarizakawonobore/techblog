@@ -6,10 +6,19 @@
     <description>Recent content on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 15 May 2020 22:05:07 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2020 23:56:43 +0900</lastBuildDate>
     
 	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/2020/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった</title>
+      <link>https://kudarizakawonobore.github.io/techblog/blog/2020/09-webapp-static/</link>
+      <pubDate>Thu, 21 May 2020 23:56:43 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/blog/2020/09-webapp-static/</guid>
+      <description>概要 以前 のブログで、Azure でフルマネージドの認証基盤を使ってサイトのホスティングはできないような話を書いたが、新たに Static Webapps なるサービスの Preview が発表され、めでたく要件が実現できるようになった。</description>
+    </item>
     
     <item>
       <title>エンジニアは建築家と医者の両方の側面を持っているという話</title>

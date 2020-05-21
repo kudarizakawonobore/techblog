@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>下り坂を昇るブログ  | Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.70.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/dist/css/app.3f5912c237ddd38c8e76debe081c7ca7.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった" />
+<meta property="og:description" content="概要 以前 のブログで、Azure でフルマネージドの認証基盤を使ってサイトのホスティングはできないような話を書いたが、新たに Static Webapps なるサービスの Preview が発表され、めでたく要件が実現できるようになった。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/09-webapp-static/" />
+<meta property="article:published_time" content="2020-05-21T23:56:43+09:00" />
+<meta property="article:modified_time" content="2020-05-21T23:56:43+09:00" />
+<meta itemprop="name" content="Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった">
+<meta itemprop="description" content="概要 以前 のブログで、Azure でフルマネージドの認証基盤を使ってサイトのホスティングはできないような話を書いたが、新たに Static Webapps なるサービスの Preview が発表され、めでたく要件が実現できるようになった。">
+<meta itemprop="datePublished" content="2020-05-21T23:56:43&#43;09:00" />
+<meta itemprop="dateModified" content="2020-05-21T23:56:43&#43;09:00" />
+<meta itemprop="wordCount" content="226">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった"/>
+<meta name="twitter:description" content="概要 以前 のブログで、Azure でフルマネージドの認証基盤を使ってサイトのホスティングはできないような話を書いたが、新たに Static Webapps なるサービスの Preview が発表され、めでたく要件が実現できるようになった。"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      下り坂を昇るブログ
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title=" page">
+              
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+  <header class="mt4 w-100">
+    <p class="f6 b helvetica tracked">
+      
+      
+    </p>
+    <h1 class="f1 athelas mb1">Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2020-05-21T23:56:43&#43;09:00">May 21, 2020</time>
+    
+    
+  </header>
+
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="概要">概要</h2>
+<p><a href="https://kudarizakawonobore.github.io/techblog/blog/2020/06-azure-oauth2/">以前</a> のブログで、Azure でフルマネージドの認証基盤を使ってサイトのホスティングはできないような話を書いたが、新たに <a href="https://azure.microsoft.com/ja-jp/services/app-service/static/#overview">Static Webapps</a> なるサービスの Preview が発表され、めでたく要件が実現できるようになった。</p>
+<p>しかも、Google AppEngine × IAP では面倒だった、ロールベースで URL 毎に閲覧制限をかけることも手軽にできそうなので、早速試してみた。</p>
+<h2 id="やりたいこと">やりたいこと</h2>
+<ol>
+<li>Hugo の静的サイトをホスティング</li>
+<li>ホスティングしたサイトに Azure AD 認証ベースで、特定のユーザーしか閲覧できないページを作る</li>
+</ol>
+<h2 id="やるべきこと概要">やるべきこと概要</h2>
+<p>これらを実現するためには、下記のようなことをすればよい。</p>
+<ol>
+<li>GitHub のリポジトリ上に、Hugo(静的サイト) のプロジェクトを作成</li>
+<li>Azure Portal から Static Webapps を作成。上記 リポジトリとつなげる</li>
+<li>Azure Portal 上から、閲覧可能なユーザーを招待</li>
+<li>Hugo にログイン画面を実装</li>
+<li>Hugo の アーティファクトディレクトリに、routes.json を配置</li>
+</ol>
+<h2 id="github-のリポジトリ上に-hugo-プロジェクトを作成">GitHub のリポジトリ上に Hugo プロジェクトを作成</h2>
+<p>ローカルで Hugo のサイトを新しく作り、 <code>hugo</code> コマンドでサイト を生成する。
+デフォルトの設定では、 プロジェクトルート直下の public ディレクトリにファイルが生成されるので、それを リポジトリに Push しておく。</p>
+<h2 id="azure-portal-から-static-webapps-を作成リポジトリと連携する">Azure Portal から Static Webapps を作成。リポジトリと連携する</h2>
+<p>Azure Portal から、 Static Webapps を選択し、新規作成。
+上で作った GitHub のリポジトリの設定を書き込む。</p>
+<p><img src="./images/00-create.png" alt="サイト作成"></p>
+<h3 id="アプリの成果物の場所を-public-にする">アプリの成果物の場所を public にする</h3>
+<p>アプリの成果物の場所、は 静的サイトが生成されるディレクトリのことを指すので、<code>public</code> にする。<br>
+この時、 public の頭に / を入れると、プロジェクトではなく、ビルド環境のルートディレクトリを参照しようとして、エラーになるので注意。</p>
+<p><img src="./images/01-create.png" alt="サイト作成"></p>
+<p>もしも / を入れてしまったり、アーティファクトディレクトリを変更したい場合は、ポータルからは変更できない。<br>
+変更したい場合は、リポジトリの中の <code>.github/workflow/azure-static-web-apps-&lt;サイトURL&gt;.json</code> に記載されている、app_artifact_location の値を修正してやる。</p>
+<h2 id="azure-portal-上から閲覧可能なユーザーを招待">Azure Portal 上から、閲覧可能なユーザーを招待。</h2>
+<p>サイトのビルドが完了したら、「ロール管理」からユーザーを招待する。</p>
+<p><img src="./images/00-auth.png" alt="サイト作成"></p>
+<p>ここで、「ロール」の個所には、任意のロール名を入れることができる。
+今回は、<code>reader</code> とした。このロール名は、後ほど、routes.json に書き込むことになるので、覚えておくこと。</p>
+<h2 id="hugo-にログイン画面を実装">Hugo にログイン画面を実装</h2>
+<p>ログイン画面、といっても、aタグのみの質素なHTML を、特定のURL に配置するだけ。
+content/login/index.html を生成し、下記のように記述する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/.auth/login/aad&#34;</span>&gt;Microsoft Account でログイン&lt;/<span style="color:#f92672">a</span>&gt;
+</code></pre></div><p>記述したら、<code>hugo</code> コマンドで、再度、ページを生成しておく。</p>
+<h2 id="hugo-のアーティファクトディレクトリに-routesjson-を配置する">Hugo のアーティファクトディレクトリに、 routes.json を配置する</h2>
+<p>続いて、Hugo の public ディレクトリの直下に、routes.json を作成し、下記のように記述する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;routes&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;route&#34;</span>: <span style="color:#e6db74">&#34;/login&#34;</span>,
+            <span style="color:#f92672">&#34;serve&#34;</span>: <span style="color:#e6db74">&#34;/.auth/login/aad&#34;</span>
+        },
+        {
+            <span style="color:#f92672">&#34;route&#34;</span>: <span style="color:#e6db74">&#34;/private/*&#34;</span>,
+            <span style="color:#f92672">&#34;allowedRoles&#34;</span>: [<span style="color:#e6db74">&#34;reader&#34;</span>]
+        }
+    ],
+    <span style="color:#f92672">&#34;platformErrorOverrides&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;errorType&#34;</span>: <span style="color:#e6db74">&#34;Unauthenticated&#34;</span>,
+            <span style="color:#f92672">&#34;serve&#34;</span>: <span style="color:#e6db74">&#34;/login&#34;</span>
+        }
+    ]
+}
+</code></pre></div><h3 id="json-の中身の解説">JSON の中身の解説</h3>
+<p>以下の部分は、Azure AD のログイン用設定。
+Twitter や Github のアカウントでログインさせたい場合は、<code>aad</code> の部分を、<a href="https://docs.microsoft.com/ja-jp/azure/static-web-apps/authentication-authorization#login">こちら</a> を参照して、適宜変更/追記/または、連携するサービスをふさいだりする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">    {
+        <span style="color:#f92672">&#34;route&#34;</span>: <span style="color:#e6db74">&#34;/login&#34;</span>,
+        <span style="color:#f92672">&#34;serve&#34;</span>: <span style="color:#e6db74">&#34;/.auth/login/aad&#34;</span>
+    }
+</code></pre></div><p>下記の部分は、/private/ 以下のリソースを参照する場合は、<code>reader</code> ロールが必要であることを示している。このロールは、自分で任意に設定できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">    {
+        <span style="color:#f92672">&#34;route&#34;</span>: <span style="color:#e6db74">&#34;/private/*&#34;</span>,
+        <span style="color:#f92672">&#34;allowedRoles&#34;</span>: [<span style="color:#e6db74">&#34;reader&#34;</span>]
+    }
+</code></pre></div><p>下記の部分は、認証が通っていない場合は、login画面に飛ばす設定。
+401（unauthorized） だった場合は、signup 用の画面に飛ばす設定も追加してやると親切かもしれない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">    {
+        <span style="color:#f92672">&#34;errorType&#34;</span>: <span style="color:#e6db74">&#34;Unauthenticated&#34;</span>,
+        <span style="color:#f92672">&#34;serve&#34;</span>: <span style="color:#e6db74">&#34;/login&#34;</span>
+    }
+</code></pre></div><p>このように設定すると、 https:///サイトドメイン/private にアクセスした際、ユーザーはログイン画面に飛ばされる。認証済み、かつ許可されたロールであれば、閲覧でき、そうでない場合は、authエラーになる。</p>
+<p>これらの設定をしたら、再度 public ディレクトリを push してやる。</p>
+<h2 id="確認">確認</h2>
+<ul>
+<li>private のリソースを閲覧すると、ログイン画面に飛ばされる。</li>
+</ul>
+<p><img src="./images/00-auth-login.png" alt="ログイン"></p>
+<ul>
+<li>リンクをクリックすると AzureAD の認証画面に飛ぶ</li>
+</ul>
+<p><img src="./images/00-auth-signin.png" alt="サインイン"></p>
+<ul>
+<li>許可されたロールのユーザーは、閲覧できる</li>
+</ul>
+<p><img src="./images/01-authorized-user.png" alt="サインイン"></p>
+<ul>
+<li>許可されていないユーザーでログインすると、Unauthorized になる</li>
+</ul>
+<p><img src="./images/02-unauthorized-user.png" alt="サインイン"></p>
+<h2 id="総評">総評</h2>
+<p>非常にシンプルに認証が実現できるのが素晴らしい！
+AppEngine × IAP に比べても、作るべきリソースが少なく済む上、json の設定も非常にシンプルで、管理しやすい。
+また、URL 単位で、ロールベースのアクセス制御が行えるのも魅力である。しかも安い。</p>
+<p>まだ実装していないが、裏側でFunctions も動かせるみたいなので、ちょっと動的な動きも実現できるかもしれない。</p>
+<p>一方、Preview 版ゆえなのか、筆者の調査不足かはわからないが、5/22 現在、下記のことはできなさそう。</p>
+<ul>
+<li>GitHub 以外のリポジトリとの連携(Gitlab は実現してほしいな)</li>
+<li>リポジトリを利用しないホスティング（どうしてもリポジトリ上にあげたくないものとか）</li>
+<li>一つのロールに複数のユーザーを一括で割り当てること(ADグループ単位で割り当てられると嬉しい)</li>
+<li>一度設定した リポジトリの向き先を変更する(必要かどうかはおいといて)</li>
+</ul>
+<p>GA 版の発表が非常に楽しみなサービスである。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+      
+      
+    </div>
+  </section>
+
+  <aside class="w-30-l mt6-l">
+    <aside class="xToc">
+      <div class="xToc_title">目次</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#やりたいこと">やりたいこと</a></li>
+    <li><a href="#やるべきこと概要">やるべきこと概要</a></li>
+    <li><a href="#github-のリポジトリ上に-hugo-プロジェクトを作成">GitHub のリポジトリ上に Hugo プロジェクトを作成</a></li>
+    <li><a href="#azure-portal-から-static-webapps-を作成リポジトリと連携する">Azure Portal から Static Webapps を作成。リポジトリと連携する</a>
+      <ul>
+        <li><a href="#アプリの成果物の場所を-public-にする">アプリの成果物の場所を public にする</a></li>
+      </ul>
+    </li>
+    <li><a href="#azure-portal-上から閲覧可能なユーザーを招待">Azure Portal 上から、閲覧可能なユーザーを招待。</a></li>
+    <li><a href="#hugo-にログイン画面を実装">Hugo にログイン画面を実装</a></li>
+    <li><a href="#hugo-のアーティファクトディレクトリに-routesjson-を配置する">Hugo のアーティファクトディレクトリに、 routes.json を配置する</a>
+      <ul>
+        <li><a href="#json-の中身の解説">JSON の中身の解説</a></li>
+      </ul>
+    </li>
+    <li><a href="#確認">確認</a></li>
+    <li><a href="#総評">総評</a></li>
+  </ul>
+</nav>
+    </aside>
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
+    &copy;  下り坂を昇るブログ 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://kudarizakawonobore.github.io/techblog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
