@@ -6,10 +6,20 @@
     <description>Recent content on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 21 May 2020 23:56:43 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2020 15:40:05 +0900</lastBuildDate>
     
 	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/2020/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PowerApps と Azure の組み合わせで 備品管理アプリを作る</title>
+      <link>https://kudarizakawonobore.github.io/techblog/blog/2020/10-powerapps-azure/</link>
+      <pubDate>Sat, 27 Jun 2020 15:40:05 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/blog/2020/10-powerapps-azure/</guid>
+      <description>動機 PowerPlatform を使わず、 Azure だけ使うのはもったいない、といったお話が、先日聴講したリモートカンファレンスで（もっと強めの言葉で）なされていた。
+Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触った程度のレベル感だが、どんなものでも最初は簡単なものから作っていくものだと思うので、ひとまず個人用のアプリケーションを、PowerPlatform × Azure の構成で作ってみることにした。</description>
+    </item>
     
     <item>
       <title>Azure でも フルマネージド認証付き静的サイトがホスティングできるようになった</title>
