@@ -14,6 +14,8 @@ Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触
 
 PowerApps を使えば、実は登録処理だけでなく、CRUD 処理全般を完結させることもできるのだが、あくまで主題は Azure と組み合わせることだったりするで、今回は CRUD のうち C（Create）のみを PowerApps に任せ、他は Azure 側でやってみる構成を想定する。
 
+![構成図](./images/overview.png)
+
 ## やること概要
 ざっくりこんな感じ
 
