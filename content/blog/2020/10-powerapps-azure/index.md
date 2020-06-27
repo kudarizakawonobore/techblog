@@ -245,7 +245,7 @@ PowerApps を起動し、写真を撮影して送信すると、 Blob/Table 双�
 あとは、読み取り用の API と連携した静的サイトで、ストレージを読み取るなり、別のPowerApps アプリで Table Storage を参照してやれば、備品の管理ができるようになる。
 
 ## StaticWebapps で結果を表示
-Static Webapps に Vue のアプリケーションをホスティングして、バックエンドとして、先ほど作った Functions を使ってあげると、下記のように、保存した画像を使って管理画面を作ることもできる。（[コード例]()）
+Static Webapps に Vue のアプリケーションをホスティングして、バックエンドとして、先ほど作った Functions を使ってあげると、下記のように、保存した画像を使って管理画面を作ることもできる。（[コード例](https://github.com/kudarizakawonobore/static-webapps-object-manager)）
 
 ![結果](./images/web1.png)
 
