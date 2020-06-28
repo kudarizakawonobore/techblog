@@ -37,7 +37,7 @@ Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触
 Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触った程度のレベル感だが、どんなものでも最初は簡単なものから作っていくものだと思うので、ひとまず個人用のアプリケーションを、PowerPlatform × Azure の構成で作ってみることにした。">
 <meta itemprop="datePublished" content="2020-06-27T15:40:05&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-27T15:40:05&#43;09:00" />
-<meta itemprop="wordCount" content="514">
+<meta itemprop="wordCount" content="526">
 
 
 
@@ -165,7 +165,7 @@ Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触
 </ul>
 <hr>
 <h2 id="azure-リソースの作成">Azure リソースの作成</h2>
-<p>Azure ポータル上で作成する手順を説明していくと、紙面の幅を取るので、AzureCLI の実行例を記載しておく。
+<p>Azure ポータル上でリソースを作成する手順を説明していくと、紙面の幅を取るので、AzureCLI の実行例を記載しておく。
 Azure Cli のインストールされた環境で下記のような Bash スクリプト(仮に、create.sh とする)を作成し、コマンドを実行する。
 正常に実行されると、Table Storage, Blob Storage(Blob 専用アクセス),　Azure Function（App） が出来上がるはず。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
@@ -250,7 +250,7 @@ main<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
 <h4 id="insert-処理のポイント">Insert 処理のポイント</h4>
 <p>Insert 処理では、下記2つを実装する</p>
 <ul>
-<li>base64 文字列のデコードと、Blobへの保存、</li>
+<li>base64 のデコードと、Blob Storage への保存、</li>
 <li>アプリから上がってくる各種情報を Table Storage へ保存</li>
 </ul>
 <p>重要なのは、function.json の記述する下記の、path 部分。</p>
@@ -261,8 +261,8 @@ main<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
       <span style="color:#f92672">&#34;connection&#34;</span>: <span style="color:#e6db74">&#34;DeviceStorageConnection&#34;</span>,
       <span style="color:#f92672">&#34;direction&#34;</span>: <span style="color:#e6db74">&#34;out&#34;</span>
     }
-</code></pre></div><p>blob の 出力バインディングは、(Node の場合) 関数内でファイルパスを変更することができないので、外部から与えてやる必要がある。<br>
-後で、PowerAutomate の解説をするときに出てくる、Guid を <code>filename</code> とし、拡張子を <code>extention</code> として リクエストに渡してあげることで、リクエストごとにファイルパスが変わるようにしている。</p>
+</code></pre></div><p>Blob Storage の 出力バインディングは、(Node の場合) 関数内でファイルパスを変更することができないので、外部から与えてやる必要がある。<br>
+後で、PowerAutomate の解説をするときに出てくる、guid を <code>filename</code> とし、拡張子を <code>extention</code> として リクエストに渡してあげることで、リクエストごとにファイルパスが変わるようにしている。</p>
 <h2 id="power-apps-アプリの作成">Power Apps アプリの作成</h2>
 <p>下準備が長かったが、ここからが本題。</p>
 <h3 id="画面構成">画面構成</h3>
@@ -296,7 +296,7 @@ Navigate(Screen1, Fade)
 <p>PowerAutomate の作成は次の章で説明するが、ひとまず関数引数は下記のようにする。</p>
 <pre><code>PowerAppsボタン.Run(MyCapture, Match(MyCapture,&quot;^data:image/(?&lt;extention&gt;.*);&quot;).extention, Name.Text, OwnerName.Text, OwnerMail.Text, Price.Text, Note.Text)
 </code></pre><p>各引数は、それぞれ、画像、画像の拡張子、各種フォームのテキストを示している。</p>
-<p>第二引数の Match 関数は、 MyCapture （base64 文字列）から正規表現で メディアタイプを引っこ抜いている。
+<p>第二引数の Match 関数は、 MyCapture （base64 DataURI）から正規表現で メディアタイプを引っこ抜いている。
 ファイルを保存する際に後々拡張子が必要になるのだが、PowerAutomate 上で引っこ抜くのが難しそうだったため、（引数が増えるが）ここで引数として渡している。</p>
 <h2 id="powerautomate-の作成">PowerAutomate の作成</h2>
 <p>上記 PowerApps から呼び出すフローを作成する。
@@ -313,33 +313,33 @@ Navigate(Screen1, Fade)
 <p>なお、ここで定義した変数の名前は変えられない模様。また、定義した順番に依存して、PowerApps 側の引数の順序も変わるので、押す順番は慎重に考えた方がいい。</p>
 <h3 id="ファイルの作成">ファイルの作成</h3>
 <p>登録処理を確認するために、並行してメールを送ってあげる。
-ファイル作成 ジョブを選択し、dataUriToData 関数で、 base64 文字列をファイルに変換してやることで、メールに添付できるようになる。</p>
+ファイル作成 ジョブを選択し、dataUriToData 関数で、 base64 DataUri をファイルに変換してやることで、メールに添付できるようになる。</p>
 <h3 id="メールの送信">メールの送信</h3>
 <p>テンプレート本文を記述して、登録結果をメールにして送信する。</p>
 <p>送信した結果は下記のような形で送られてくる。</p>
 <p><img src="./images/powerautomate3.png" alt="メール送信結果"></p>
 <h2 id="結果確認">結果確認</h2>
-<p>PowerApps を起動し、写真を撮影して送信すると、 Blob/Table 双方にレコードが追加される。</p>
+<p>PowerApps を起動し、写真を撮影して送信すると、 Blob/Table 双方に ファイル/レコードがそれぞれ追加される。</p>
 <p><img src="./images/storage1.png" alt="結果">
 <img src="./images/storage2.png" alt="結果"></p>
 <p>あとは、読み取り用の API と連携した静的サイトで、ストレージを読み取るなり、別のPowerApps アプリで Table Storage を参照してやれば、備品の管理ができるようになる。</p>
 <h2 id="staticwebapps-で結果を表示">StaticWebapps で結果を表示</h2>
-<p>Static Webapps に Vue のアプリケーションをホスティングして、バックエンドとして、先ほど作った Functions を使ってあげると、下記のように、保存した画像を使って管理画面を作ることもできる。（<a href="https://github.com/kudarizakawonobore/static-webapps-object-manager">コード例</a>）</p>
+<p>Static Webapps に Vue の SPA アプリケーションをホスティングして、バックエンドとして、先ほど作った Functions を使ってあげると、下記のように、保存した画像を使って管理画面を作ることもできる。（<a href="https://github.com/kudarizakawonobore/static-webapps-object-manager">コード例</a>）</p>
 <p><img src="./images/web1.png" alt="結果"></p>
-<p>Functions の保護は、 Functions の proxy と CORS を使って、外部からはアクセスさせないようにできる。</p>
-<p>Static Webapps で用意されている Functions を使う方法も考えたが、少し調べた感じでは、当該 Functions には 現時点で リソースへの 接続文字列が設定できないようだったので、断念。</p>
+<p>Functions の保護は、 Functions の proxy と CORS を使って、外部からはアクセスさせないようにしている。</p>
+<p>Static Webapps で用意されている Functions を使う方法も考えたが、少し調べた感じでは、当該 Functions には 現時点で リソースへの 接続文字列が設定できなさそうだったので、利用は断念した。</p>
 <h2 id="捕捉">捕捉</h2>
 <h3 id="powerapps-から直接-table-storage-を参照させることも可能">PowerApps から直接 Table Storage を参照させることも可能</h3>
 <p>PowerApps / PowerAutomate が操作できるデータソースは、通常の DB から、OneDrive 上に配置した Excelファイル（これが地味にすごい）まで幅広く取れるので、ただデータに格納するだけであれば、 Functions を間に挟まず、直接つないでしまった方が何かと便利である。</p>
 <p>一方、業務の要件によって、意見の分かれるところだと思うのだが、Azure と Office365 のリソースを疎結合にしておくことで、変更を加える際の制約を、Azure 側で吸収しやすくすることができる。</p>
 <p>例えば、テーブルのスキーマを変更したり、格納先のTable を変更するよう場合、直接つないでしまうと、Azure 側のリソースの変更に伴い、Office365 側にも都度都度、それなりに複雑な手順の変更を要求することになる。<br>
-しかし、Functions を間にはさんでおくことで、カラム名の変更や、Storage の認証キーの変更といった要件であれば Functions のみで完結できるし、カラムを増やすような要件も、HTTP 要求で投げる Json のスキーマのみを Azure の担当者から、Office365 の管理担当者に連携してあげるだけで変更が可能になる。<br>
+しかし、Functions を間にはさんでおくことで、カラム名の変更や、Storage の認証キーの変更といった要件であれば Azure のリソースの変更 のみで完結できるし、カラムを増やすような要件も、HTTP 要求で投げる Json のスキーマのみを Azure の担当者から、Office365 の管理担当者に連携してあげるだけで変更が可能になる。<br>
 こうすることで、余計なコミュニケーションコストをかけずに変更を行える。（はず）</p>
-<p>冒頭で書いた通り、個人向けのアプリなので、ここまで考える必要はないのだが、それぞれ管理担当者や、管理業務を委託する先が異なるような組織の場合は有効かもしれない。</p>
+<p>冒頭で書いた通り、個人向けのアプリなので、ここまで考える必要はないのだが、組織で運用する場合は、 Office365 と Azure でそれぞれ管理担当者や、管理業務を委託する先が異なったりするので、有効かもしれない。</p>
 <h2 id="感想">感想</h2>
 <h3 id="簡易的な要件にも対応できるのが良い">簡易的な要件にも対応できるのが良い</h3>
 <p>こんな感じのウェブアプリ、スマホアプリを、Azure Only の構成や、ゼロベースでアプリを作り始めるような構成にした場合、なんだかんだでコスト過多になってしまい、実現しない可能性が高い。</p>
-<p>製造にかかるコスト自体は（慣れてしまえば）PowerApps も ネイティブで作るのもあまり変わらないのかもしれないが、アプリのリリースや、配信といった作業は割と知識や組織の統制が必要だったり、セキュリティの考慮など、専門的かつ、幅広い知識を必要としてくる。そのためどうしても「手動でやった方がラク」という結論に陥りやすい。</p>
+<p>製造にかかるコスト自体は（慣れてしまえば）PowerApps も ネイティブで作るのもあまり変わらないのかもしれないが、アプリのリリースや、配信といった作業は割と知識や組織の統制が必要だったり、セキュリティの考慮など、専門的かつ、幅広い知識を必要としてくる（かつ面倒くさい）。そのためどうしても「手動でやった方がラク」という結論に陥りやすい。</p>
 <p>こういった、「エンジニアに頼むほどでもないけれど、あったら便利」、というアプリの要件は割といろんな組織に内在しているのだが、現実にはエンジニアに相談される前にひっこめられてしまう。このような要件をエンジニア以外の人たちのアイディアと、エンジニアのちょっとした協力のみで解決できるようになると、双方解決できる課題の幅が広がり、ハッピーになれるはずである。ぜひとも流行ってほしい。</p>
 <h2 id="参考サイト">参考サイト</h2>
 <p><a href="https://qiita.com/TsuyoshiUshio@github/items/7e10cc19170fad9dc6d9">https://qiita.com/TsuyoshiUshio@github/items/7e10cc19170fad9dc6d9</a></p>
