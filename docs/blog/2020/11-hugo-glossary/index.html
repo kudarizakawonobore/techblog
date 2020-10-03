@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>下り坂を昇るブログ  | Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.70.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://kudarizakawonobore.github.io/techblog/dist/css/app.3f5912c237ddd38c8e76debe081c7ca7.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する" />
+<meta property="og:description" content="やりたいこと Sphinx の Glossary みたいな、特定の用語に対するリンクを Hugo で書いた記事から参照させたい。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2020/11-hugo-glossary/" />
+<meta property="article:published_time" content="2020-10-02T15:57:57+09:00" />
+<meta property="article:modified_time" content="2020-10-02T15:57:57+09:00" />
+<meta itemprop="name" content="Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する">
+<meta itemprop="description" content="やりたいこと Sphinx の Glossary みたいな、特定の用語に対するリンクを Hugo で書いた記事から参照させたい。">
+<meta itemprop="datePublished" content="2020-10-02T15:57:57&#43;09:00" />
+<meta itemprop="dateModified" content="2020-10-02T15:57:57&#43;09:00" />
+<meta itemprop="wordCount" content="154">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する"/>
+<meta name="twitter:description" content="やりたいこと Sphinx の Glossary みたいな、特定の用語に対するリンクを Hugo で書いた記事から参照させたい。"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://kudarizakawonobore.github.io/techblog/" class="f3 fw2 hover-white no-underline white-90 dib">
+      下り坂を昇るブログ
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title=" page">
+              
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://kudarizakawonobore.github.io/techblog/blog/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+  <header class="mt4 w-100">
+    <p class="f6 b helvetica tracked">
+      
+      
+    </p>
+    <h1 class="f1 athelas mb1">Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2020-10-02T15:57:57&#43;09:00">October 2, 2020</time>
+    
+    
+  </header>
+
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="やりたいこと">やりたいこと</h2>
+<p><a href="https://www.sphinx-doc.org/ja/master/usage/restructuredtext/directives.html?highlight=glossary#directive-glossary">Sphinx の Glossary</a> みたいな、特定の用語に対するリンクを Hugo で書いた記事から参照させたい。</p>
+<h2 id="動機">動機</h2>
+<p>最近、 <a href="https://gohugo.io/">Hugo</a> をブログ用途の他に、プロジェクト管理や、ミーティングの議事録に使い始めている。
+以前までは、 <a href="https://www.sphinx-doc.org/ja/master/">Shpinx</a> をメインに使っていて、今でもプログラムの仕様書レベルのきっちりした文章を書くときは Sphinx にお世話になるのだが、いかんせん、 Sphinx は文章量が増えてくると、<a href="https://pypi.org/project/sphinx-autobuild/">auto-build</a> では反映が遅く、インタラクティブなコミュニケーション、とりわけリモート会議ではいまいちな動きになってしまう。</p>
+<p>そのため、文章の修正から反映までの時間が短い Hugo で、Sphinx の便利機能を簡易的に実装して、かゆいところに手が届くようにしたい。</p>
+<h2 id="利用する機能">利用する機能</h2>
+<ul>
+<li>Hugo の <a href="https://gohugo.io/templates/shortcode-templates/">Custom ShortCode</a></li>
+<li>Chrome の <a href="https://github.com/WICG/scroll-to-text-fragment">
+scroll-to-text-fragment</a>(Chrome限定)</li>
+</ul>
+<h2 id="完成イメージ">完成イメージ</h2>
+<ul>
+<li>Hugo の文章中に、下記のショートコードを記述してあげると、用語集の特定の term1 アンカーにリンクを貼ってくれる。</li>
+</ul>
+<pre><code>{{ glossary term1 }}
+</code></pre><ul>
+<li>下記のように記述してあげれば、用語集の term1 アンカーにリンクを貼り、かつ、元ページの表記は label1 となる。</li>
+</ul>
+<pre><code>{{ glossary term1 label1 }}
+</code></pre><p>(Markdown 表記)
+<img src="./images/markdown.png" alt="markdown">
+(HTML 表示)
+<img src="./images/result.png" alt="html"></p>
+<h2 id="やること">やること</h2>
+<h3 id="用語集の作成">用語集の作成</h3>
+<p>content 下であれば、どのような形式でも構わないのだが、ひとまず <code>/content/glossary/index.md</code> に用語集を作成する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">
+# Glossary
+<span style="color:#75715e">## term1 
+</span><span style="color:#75715e"></span>term1 は、何かしらの用語を表します。
+
+</code></pre></div><h3 id="shortcode-の作成">ShortCode の作成</h3>
+<p><code>/layouts/shortcodes/glossary.html</code> を作成し、下記のように記述します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>{{ $glossary_url := ref . &#34;/content/glossary/index.md&#34; }}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>{{ $term := .Get 0 }}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>{{ $label := .Get 1 | default $term }}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>{{ $link_url := print $glossary_url &#34;#&#34; $term &#34;:~:text=&#34; $term }}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $link_url }}&#34;</span>&gt;{{ $label }}&lt;/<span style="color:#f92672">a</span>&gt;</code></pre></div>
+<ul>
+<li>1 行目 は、先ほど作成した <code>/content/glossary/index.md</code> の URL を取得している</li>
+<li>2 ~ 3 行目は、それぞれ位置パラメータ（引数）を取得している</li>
+<li>4 行目で、link URL に glossary に記述したアンカーと、scroll-to-fragment の記述を追加している</li>
+</ul>
+<p>上記のショートコードを作成すれば、記事内で <code>glossary</code> ショートコードが利用できるようになる。</p>
+<h2 id="妥協ポイント">妥協ポイント</h2>
+<p>Sphinx の glossary 機能とは、下記の挙動が異なるが、今のところは妥協している。</p>
+<h3 id="包含関係にある用語はfragment-が優先されてしまう">包含関係にある用語は、fragment が優先されてしまう</h3>
+<p>scroll-to-fragment の機能の影響で、ページ内で最初にヒットした単語がハイライトされてしまう。
+そのため、例えば「プロジェクトマネジメント」と「プロジェクト」 の両方をこの順序で glossary に記述して、「プロジェクト」のリンクを作成すると、「プロジェクトマネジメント」に含まれる「プロジェクト」がヒットしてしまう。</p>
+<h3 id="term-が存在しなくてもビルドエラーにならない">term が存在しなくても、ビルドエラーにならない</h3>
+<p>アンカーと ShortCode の性質上致し方ないが、存在しない term を参照したとしても、エラーメッセージをはいてくれない。<br>
+一応、term 毎にファイルを作成する方法も考えられるが、煩雑すぎるので断念。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>
+<p><a href="http://var.blog.jp/archives/81779140.html">http://var.blog.jp/archives/81779140.html</a></p>
+</li>
+<li>
+<p><a href="https://maku77.github.io/hugo/shortcode/create-shortcode.html">https://maku77.github.io/hugo/shortcode/create-shortcode.html</a></p>
+</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+      
+      
+    </div>
+  </section>
+
+  <aside class="w-30-l mt6-l">
+    <aside class="xToc">
+      <div class="xToc_title">目次</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#やりたいこと">やりたいこと</a></li>
+    <li><a href="#動機">動機</a></li>
+    <li><a href="#利用する機能">利用する機能</a></li>
+    <li><a href="#完成イメージ">完成イメージ</a></li>
+    <li><a href="#やること">やること</a>
+      <ul>
+        <li><a href="#用語集の作成">用語集の作成</a></li>
+        <li><a href="#shortcode-の作成">ShortCode の作成</a></li>
+      </ul>
+    </li>
+    <li><a href="#妥協ポイント">妥協ポイント</a>
+      <ul>
+        <li><a href="#包含関係にある用語はfragment-が優先されてしまう">包含関係にある用語は、fragment が優先されてしまう</a></li>
+        <li><a href="#term-が存在しなくてもビルドエラーにならない">term が存在しなくても、ビルドエラーにならない</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+    </aside>
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
+    &copy;  下り坂を昇るブログ 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://kudarizakawonobore.github.io/techblog/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

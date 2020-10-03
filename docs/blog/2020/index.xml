@@ -6,10 +6,19 @@
     <description>Recent content on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 27 Jun 2020 15:40:05 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2020 15:57:57 +0900</lastBuildDate>
     
 	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/2020/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo の Custom ShortCode で Glossary（用語集） リンク機能を追加する</title>
+      <link>https://kudarizakawonobore.github.io/techblog/blog/2020/11-hugo-glossary/</link>
+      <pubDate>Fri, 02 Oct 2020 15:57:57 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/blog/2020/11-hugo-glossary/</guid>
+      <description>やりたいこと Sphinx の Glossary みたいな、特定の用語に対するリンクを Hugo で書いた記事から参照させたい。</description>
+    </item>
     
     <item>
       <title>PowerApps と Azure の組み合わせで 備品管理アプリを作る</title>
