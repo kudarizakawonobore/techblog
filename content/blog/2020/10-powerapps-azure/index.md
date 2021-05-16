@@ -118,6 +118,10 @@ main() {
   fi
 }
 
+if [ $BASH_SOURCE = $0 ];then
+   main $@
+fi
+
 ```
 
 ### Functions のデプロイ

@@ -37,7 +37,7 @@ Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触
 Azure はともかく、PowerPlatform の方は、個人の勉強レベルで触った程度のレベル感だが、どんなものでも最初は簡単なものから作っていくものだと思うので、ひとまず個人用のアプリケーションを、PowerPlatform × Azure の構成で作ってみることにした。">
 <meta itemprop="datePublished" content="2020-06-27T15:40:05&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-27T15:40:05&#43;09:00" />
-<meta itemprop="wordCount" content="526">
+<meta itemprop="wordCount" content="535">
 
 
 
@@ -244,6 +244,10 @@ main<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">fi</span>
 <span style="color:#f92672">}</span>
 
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $BASH_SOURCE <span style="color:#f92672">=</span> $0 <span style="color:#f92672">]</span>;<span style="color:#66d9ef">then</span>
+   main $@
+<span style="color:#66d9ef">fi</span>
+
 </code></pre></div><h3 id="functions-のデプロイ">Functions のデプロイ</h3>
 <p>Azure Functions(Node) で、Table Storage/Blob への Insert 処理と、 Read 処理を実装する。
 実際に書いたコードは <a href="https://github.com/kudarizakawonobore/static-webapps-object-manager/tree/master/api">こちら</a></p>
@@ -428,7 +432,7 @@ Navigate(Screen1, Fade)
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://kudarizakawonobore.github.io/techblog/" >
-    &copy;  下り坂を昇るブログ 2020 
+    &copy;  下り坂を昇るブログ 2021 
   </a>
     <div>
 
