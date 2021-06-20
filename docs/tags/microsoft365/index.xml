@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>下り坂を昇るブログ</title>
-    <link>https://kudarizakawonobore.github.io/techblog/blog/</link>
-    <description>Recent content on 下り坂を昇るブログ</description>
+    <title>Microsoft365 on 下り坂を昇るブログ</title>
+    <link>https://kudarizakawonobore.github.io/techblog/tags/microsoft365/</link>
+    <description>Recent content in Microsoft365 on 下り坂を昇るブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 06 Jun 2021 16:12:56 +0900</lastBuildDate>
     
-	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kudarizakawonobore.github.io/techblog/tags/microsoft365/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

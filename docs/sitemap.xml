@@ -4,17 +4,37 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/</loc>
-    <lastmod>2020-10-02T15:57:57+09:00</lastmod>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
-    <lastmod>2020-10-02T15:57:57+09:00</lastmod>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/</loc>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/blog/</loc>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/microsoft365/</loc>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2021/00-microsoft365r/</loc>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/r/</loc>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
+    <lastmod>2021-06-06T16:12:56+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/</loc>
     <lastmod>2020-10-02T15:57:57+09:00</lastmod>
   </url>
   
@@ -40,11 +60,6 @@
   
   <url>
     <loc>https://kudarizakawonobore.github.io/techblog/blog/2020/10-powerapps-azure/</loc>
-    <lastmod>2020-06-27T15:40:05+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kudarizakawonobore.github.io/techblog/tags/</loc>
     <lastmod>2020-06-27T15:40:05+09:00</lastmod>
   </url>
   
