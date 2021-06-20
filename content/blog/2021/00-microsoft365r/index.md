@@ -11,7 +11,7 @@ tags: ["Microsoft365", "R"]
 ## エクセルからレポート作成を試してみる
 データドリブンが叫ばれる世の中とはいえ、まだまだビジネスアクションの起点はエクセルファイル、アウトプットはパワポ、である場面は多いので、SharePoint に配置されたエクセルファイルを簡単なコードでレポート化できる仕組みは結構需要がある。
 
-今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力するところまでやってみる。
+今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力し、かつ、結果を SharePoint 上に配布するのを、自動でやってみる。
 
 ## 環境
 * R 4.1.0
@@ -124,7 +124,7 @@ Report.Rmd は、 `downloads/ProjectManage.xlsx` が存在している前提で�
 ```R
 # ファイルのダウンロード
 library(Microsoft365R)
-sp <- get_sharepoint_site(site_url = "https://oxygenjp.sharepoint.com/sites/DataSample/")
+sp <- get_sharepoint_site(site_url = "https://XXXXXX.sharepoint.com/sites/DataSample/")
 drv <- sp$get_drive()
 drv$download_file("Dimensions/ProjectManage.xlsx", overwrite = TRUE, dest = "downloads/ProjectManage.xlsx")
 
@@ -141,9 +141,16 @@ drv$upload_file("./Report.pptx", dest = "Reports/ProjectManage.pptx" )
 
 ![ppt](./images/ppt.png)
 
+もちろん、SharePoint 上の Excel ファイルを更新した後（例えば、プロジェクトメンバーを移動させる等）、スクリプトを再実行してやれば、多少のタイムラグはあるものの、最新のデータを反映したレポートを再出力できる。
+もちろん、PowerAutomate で後続処理を書いてやれば、PJ メンバーに通知したり、再度レビューしてもらうことも可能になる。
+
+週次でレポートを共有して報告する場合や、複数メンバーの報告事項をまとめてPPT で共有したい場合などには使えそう。
+
+もちろん、 PowerBI のような専用のツールを使えれば、見た目の調整を容易にできたり、レポート作成環境の構築が要らなかったりと、他のメリットも享受できるため、そちらを使えるに越したことはないのだが、親会社、子会社でファイルの共有が禁止されているなど、組織のRole 整備が運用環境にマッチしないような状況では効果を発揮しそう。
+
 社内レポートレベルであればこれで十分なうえ、まだやったことはないが、RMD の出力フォーマットを整備すれば、きれいなレポートに成型することもできる（はず）。
 
-週次で PJ の状況を報告しなければいけないような PJ が複数ある場合は使えるかも。
+あまり本質的ではないものの、週次で報告作業に追われてしまっているマネージャーさんの助力になればと。
 
 ## 参考サイト
 * https://qiita.com/nozma/items/c249e0d0aba028b33664

@@ -35,7 +35,7 @@
 <meta itemprop="description" content="概要 今年の2月ぐらいに、Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ が発表された。 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。">
 <meta itemprop="datePublished" content="2021-06-06T16:12:56&#43;09:00" />
 <meta itemprop="dateModified" content="2021-06-06T16:12:56&#43;09:00" />
-<meta itemprop="wordCount" content="267">
+<meta itemprop="wordCount" content="278">
 
 
 
@@ -130,7 +130,7 @@
 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。</p>
 <h2 id="エクセルからレポート作成を試してみる">エクセルからレポート作成を試してみる</h2>
 <p>データドリブンが叫ばれる世の中とはいえ、まだまだビジネスアクションの起点はエクセルファイル、アウトプットはパワポ、である場面は多いので、SharePoint に配置されたエクセルファイルを簡単なコードでレポート化できる仕組みは結構需要がある。</p>
-<p>今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力するところまでやってみる。</p>
+<p>今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力し、かつ、結果を SharePoint 上に配布するのを、自動でやってみる。</p>
 <h2 id="環境">環境</h2>
 <ul>
 <li>R 4.1.0</li>
@@ -324,7 +324,7 @@ for (project in projects$ID)
 <p>そこで、下記のような R スクリプト（仮に、BuildReport.r とする）で RMD を Wrap してあげる。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># ファイルのダウンロード</span>
 <span style="color:#a6e22e">library</span>(Microsoft365R)
-sp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">get_sharepoint_site</span>(site_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://oxygenjp.sharepoint.com/sites/DataSample/&#34;</span>)
+sp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">get_sharepoint_site</span>(site_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://XXXXXX.sharepoint.com/sites/DataSample/&#34;</span>)
 drv <span style="color:#f92672">&lt;-</span> sp<span style="color:#f92672">$</span><span style="color:#a6e22e">get_drive</span>()
 drv<span style="color:#f92672">$</span><span style="color:#a6e22e">download_file</span>(<span style="color:#e6db74">&#34;Dimensions/ProjectManage.xlsx&#34;</span>, overwrite <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, dest <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;downloads/ProjectManage.xlsx&#34;</span>)
 
@@ -337,8 +337,12 @@ drv<span style="color:#f92672">$</span><span style="color:#a6e22e">upload_file</
 
 </code></pre></div><p>上記を実行すると、SharePoint からエクセルをダウンロードして、下記のようなプロジェクトごとのメンバー一覧をパワポに出力することができる。</p>
 <p><img src="./images/ppt.png" alt="ppt"></p>
+<p>もちろん、SharePoint 上の Excel ファイルを更新した後（例えば、プロジェクトメンバーを移動させる等）、スクリプトを再実行してやれば、多少のタイムラグはあるものの、最新のデータを反映したレポートを再出力できる。
+もちろん、PowerAutomate で後続処理を書いてやれば、PJ メンバーに通知したり、再度レビューしてもらうことも可能になる。</p>
+<p>週次でレポートを共有して報告する場合や、複数メンバーの報告事項をまとめてPPT で共有したい場合などには使えそう。</p>
+<p>もちろん、 PowerBI のような専用のツールを使えれば、見た目の調整を容易にできたり、レポート作成環境の構築が要らなかったりと、他のメリットも享受できるため、そちらを使えるに越したことはないのだが、親会社、子会社でファイルの共有が禁止されているなど、組織のRole 整備が運用環境にマッチしないような状況では効果を発揮しそう。</p>
 <p>社内レポートレベルであればこれで十分なうえ、まだやったことはないが、RMD の出力フォーマットを整備すれば、きれいなレポートに成型することもできる（はず）。</p>
-<p>週次で PJ の状況を報告しなければいけないような PJ が複数ある場合は使えるかも。</p>
+<p>あまり本質的ではないものの、週次で報告作業に追われてしまっているマネージャーさんの助力になればと。</p>
 <h2 id="参考サイト">参考サイト</h2>
 <ul>
 <li><a href="https://qiita.com/nozma/items/c249e0d0aba028b33664">https://qiita.com/nozma/items/c249e0d0aba028b33664</a></li>
