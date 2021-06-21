@@ -22,4 +22,4 @@ url = "/contact/"
 
 [params]
 featured_image = '/images/gohugo-default-sample-hero-image.jpg'
-images = ['/images/gohugo-default-sample-hero-image.jpg']
+images = ['./images/gohugo-default-sample-hero-image.jpg']
