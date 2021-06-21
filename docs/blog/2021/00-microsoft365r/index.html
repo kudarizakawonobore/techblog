@@ -29,6 +29,7 @@
 <meta property="og:description" content="概要 今年の2月ぐらいに、Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ が発表された。 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kudarizakawonobore.github.io/techblog/blog/2021/00-microsoft365r/" />
+<meta property="og:image" content="https://kudarizakawonobore.github.io/images/2021-00/thumbnail.png" />
 <meta property="article:published_time" content="2021-06-06T16:12:56+09:00" />
 <meta property="article:modified_time" content="2021-06-06T16:12:56+09:00" />
 <meta itemprop="name" content="Microsoft365R で SharePoint 上のファイルをベースに自動レポートを作成する">
@@ -36,10 +37,13 @@
 <meta itemprop="datePublished" content="2021-06-06T16:12:56&#43;09:00" />
 <meta itemprop="dateModified" content="2021-06-06T16:12:56&#43;09:00" />
 <meta itemprop="wordCount" content="279">
+<meta itemprop="image" content="https://kudarizakawonobore.github.io/images/2021-00/thumbnail.png">
 
 
 
-<meta itemprop="keywords" content="Microsoft365,R," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Microsoft365,R," /><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://kudarizakawonobore.github.io/images/2021-00/thumbnail.png"/>
+
 <meta name="twitter:title" content="Microsoft365R で SharePoint 上のファイルをベースに自動レポートを作成する"/>
 <meta name="twitter:description" content="概要 今年の2月ぐらいに、Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ が発表された。 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。"/>
 
@@ -125,14 +129,12 @@
     
   </header>
 
-  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><!-- raw HTML omitted -->
-<h2 id="概要">概要</h2>
+  <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="概要">概要</h2>
 <p>今年の2月ぐらいに、<a href="https://github.com/Azure/Microsoft365R">Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ</a> が発表された。
 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。</p>
 <h2 id="エクセルからレポート作成を試してみる">エクセルからレポート作成を試してみる</h2>
 <p>データドリブンが叫ばれる世の中とはいえ、まだまだビジネスアクションの起点はエクセルファイル、アウトプットはパワポ、である場面は多いので、SharePoint に配置されたエクセルファイルを簡単なコードでレポート化できる仕組みは結構需要がある。</p>
 <p>今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力し、かつ、結果を SharePoint 上に配布するのを、自動でやってみる。</p>
-<p><img src="./images/thumbnail.png" alt="img"></p>
 <h2 id="環境">環境</h2>
 <ul>
 <li>R 4.1.0</li>

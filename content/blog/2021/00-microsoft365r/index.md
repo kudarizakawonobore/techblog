@@ -2,9 +2,9 @@
 title: "Microsoft365R で SharePoint 上のファイルをベースに自動レポートを作成する"
 date: 2021-06-06T16:12:56+09:00
 tags: ["Microsoft365", "R"]
+images: ["/images/2021-00/thumbnail.png"]
 ---
 
-<meta property="og:image" content="./images/thumbnail.jpg">
 
 ## 概要
 今年の2月ぐらいに、[Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ](https://github.com/Azure/Microsoft365R) が発表された。
@@ -14,8 +14,6 @@ tags: ["Microsoft365", "R"]
 データドリブンが叫ばれる世の中とはいえ、まだまだビジネスアクションの起点はエクセルファイル、アウトプットはパワポ、である場面は多いので、SharePoint に配置されたエクセルファイルを簡単なコードでレポート化できる仕組みは結構需要がある。
 
 今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力し、かつ、結果を SharePoint 上に配布するのを、自動でやってみる。
-
-![img](./images/thumbnail.png)
 
 ## 環境
 * R 4.1.0
