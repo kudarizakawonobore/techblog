@@ -15,6 +15,8 @@ images: ["./images/2021-00/thumbnail.png"]
 
 今回は、SharePoint 上に配置された Excel のデータファイルを読み取って、RMarkdown で パワポ 形式レポートに出力し、かつ、結果を SharePoint 上に配布するのを、自動でやってみる。
 
+![img](./images/thumbnail.png)
+
 ## 環境
 * R 4.1.0
 * Windows10
