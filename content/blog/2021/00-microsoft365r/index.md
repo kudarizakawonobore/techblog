@@ -2,7 +2,7 @@
 title: "Microsoft365R で SharePoint 上のファイルをベースに自動レポートを作成する"
 date: 2021-06-06T16:12:56+09:00
 tags: ["Microsoft365", "R"]
-images: ["/images/2021-00/thumbnail.png"]
+images: ["./images/2021-00/thumbnail.png"]
 ---
 
 
