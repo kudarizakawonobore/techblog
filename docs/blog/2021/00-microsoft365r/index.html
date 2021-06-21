@@ -36,7 +36,7 @@
 <meta itemprop="description" content="概要 今年の2月ぐらいに、Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ が発表された。 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。">
 <meta itemprop="datePublished" content="2021-06-06T16:12:56&#43;09:00" />
 <meta itemprop="dateModified" content="2021-06-06T16:12:56&#43;09:00" />
-<meta itemprop="wordCount" content="279">
+<meta itemprop="wordCount" content="284">
 <meta itemprop="image" content="https://kudarizakawonobore.github.io/images/2021-00/thumbnail.png">
 
 
@@ -160,7 +160,8 @@ drv<span style="color:#f92672">$</span><span style="color:#a6e22e">download_file
 <blockquote>
 <p>関数 &ldquo;make_basic_list&rdquo; を見つけることができませんでした</p>
 </blockquote>
-<p>という、いかにもライブラリのバージョン不整合っぽいメッセージが表示されるため、原因に気づきにくいのだが、パラメータを正確に指定すれば通るので、確認してみるといい。</p>
+<p>という、いかにもライブラリのバージョン不整合っぽいメッセージが表示される。
+そのため、パラーメータの指定が間違っているという本当の原因に気づきにくいのだが、パラメータを正確に指定すれば通るので、issue をあげる前に確認してみるといい。（あげかけた）</p>
 <h2 id="レポート作成">レポート作成</h2>
 <p>事前準備として、まず、Excel には下記のようなデータをあらかじめ挿入しておく。</p>
 <h3 id="projects-シート">Projects シート</h3>
@@ -324,7 +325,8 @@ for (project in projects$ID)
    print(kable(projectMember))
 }
 ```
-</code></pre><p>Report.Rmd は、 <code>downloads/ProjectManage.xlsx</code> が存在している前提で動いているので、このままだとエラーになる。かといって、上記のエクセルファイルを Git で共有してしまうと、エンジニア以外が編集するのが難しくなってしまう。</p>
+</code></pre><p>上記 Report.Rmd は、 <code>downloads/ProjectManage.xlsx</code> が存在している前提で動いているので、このままだとエラーになる。 環境を変えて実行した時や、複数人でコードを共有するときはやりにくい。</p>
+<p>かといって、上記のエクセルファイルを Git で共有してしまうと、エンジニア以外がエクセルを編集するのが難しくなってしまう。</p>
 <p>そこで、下記のような R スクリプト（仮に、BuildReport.r とする）で RMD を Wrap してあげる。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># ファイルのダウンロード</span>
 <span style="color:#a6e22e">library</span>(Microsoft365R)
