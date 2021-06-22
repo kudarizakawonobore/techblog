@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>下り坂を昇るブログ</title>
+    <link>https://kudarizakawonobore.github.io/techblog/blog/2021/</link>
+    <description>Recent content on 下り坂を昇るブログ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 06 Jun 2021 16:12:56 +0900</lastBuildDate>
+    
+	<atom:link href="https://kudarizakawonobore.github.io/techblog/blog/2021/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Microsoft365R で SharePoint 上のファイルをベースに自動レポートを作成する</title>
+      <link>https://kudarizakawonobore.github.io/techblog/blog/2021/00-microsoft365r/</link>
+      <pubDate>Sun, 06 Jun 2021 16:12:56 +0900</pubDate>
+      
+      <guid>https://kudarizakawonobore.github.io/techblog/blog/2021/00-microsoft365r/</guid>
+      <description>概要 今年の2月ぐらいに、Microsoft365 上のファイルを R 言語で取り扱うためのライブラリ が発表された。 いままで、Sharepoint 上のファイルを R で取り扱うには、認証をくぐってファイルを取得するためのプロセスを自分で書いてやる必要があったが、晴れて公式ライブラリが発表されたので、遠慮なく使ってみる。</description>
+    </item>
+    
+  </channel>
+</rss>
