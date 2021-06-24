@@ -2,7 +2,7 @@
 title: "PowerApps と Azure の組み合わせで 備品管理アプリを作る"
 date: 2020-06-27T15:40:05+09:00
 tags: ["office365","PowerApps","Azure"]
-images: [./images/overview.png]
+images: [./images/2020-10/overview.png]
 ---
 
 ## 動機
